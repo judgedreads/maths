@@ -8,3 +8,5 @@ other functions in Go's math package.
 
 This tool is intended to facilitate tools for other algorithms for
 calculating derivatives, integrals, etc. for mathematical formulas.
+
+Just run `go build *.go` for now, proper building will come with time.
