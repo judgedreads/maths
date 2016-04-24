@@ -1,0 +1,124 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage{mystyle}
+
+\begin{document}
+
+\begin{thm}[Cosine Theorem]
+	Given a triangle with vertices $A,B,C$ and respective opposing edges
+	$a,b,c$, and edge $b$ along the $x$-axis:
+	\[ a^2 = b^2 + c^2 - 2bc\cos\theta \]
+\end{thm}
+
+\begin{proof}
+	\[
+	a = |\vec{BC}| = |-\vec{AC} + \vec{AB}|
+	= \left|\begin{pmatrix}-b\\0\end{pmatrix} + 
+		c\begin{pmatrix}\cos\theta\\\sin\theta\end{pmatrix}\right|
+	\]
+	\[
+	\tf a^2 = (c\cos\theta - b)^2 + c^2\sin^2\theta
+	= b^2 + c^2 - 2bc\cos\theta
+	\]
+\end{proof}
+
+A plane is described by a point and two linearly independent vectors i.e.
+\[\mathbf{r}(\lambda, \mu) = \mathbf{a} + \lambda \mathbf{u} + \mu \mathbf{v}\]
+
+A plane can also in Cartesian form i.e.
+\[ax + by + cz = d\]
+
+\begin{ex}
+	\[
+		\mathbf{r} = 
+		\begin{pmatrix}
+			1\\2\\3
+		\end{pmatrix} 
+		+ \lambda
+		\begin{pmatrix}
+			1\\1\\1
+		\end{pmatrix}
+		+ \mu
+		\begin{pmatrix}
+			2\\1\\0
+		\end{pmatrix}
+		\, \lambda, \mu \in \RR 
+	\]
+	\[ x = 1 + \lambda + 2\mu \]
+	\[ y = 2 + \lambda + \mu \]
+	\[ z = 3 + \lambda \]
+
+	\[ \tf \lambda = z - 3, \mu = y - z + 1 \]
+	\[ \tf x = 2y - z \tf x - 2y + z = 0 \]
+\end{ex}
+
+\begin{ex}[Alternative approach]
+	Given a plane $P$ and two points on the plane described from the origin
+	as $\mathbf{r}$ and $\mathbf{a}$, if $\mathbf{n}$ is normal to $P$ we
+	have:
+	\[ (\mathbf{r} - \mathbf{a}) \cdot \mathbf{n} = 0 \]
+	\[ \tf \mathbf{r} \cdot \mathbf{n} = \mathbf{a} \cdot \mathbf{n} \]
+
+	We can calculate the normal vector using the cross product:
+	\[ 
+		\begin{pmatrix}
+			1\\1\\1
+		\end{pmatrix}
+		\wedge
+		\begin{pmatrix}
+			2\\1\\0
+		\end{pmatrix}
+		=
+		\begin{pmatrix}
+			-1\\2\\-1
+		\end{pmatrix}
+	\]
+	\[ \tf -x + 2y - z = -1 + 4 - 3 \tf x - 2y + z = 0 \]
+\end{ex}
+	
+% Put this in curves and surfaces?
+If $r(t)$ is a parameterisation of a curve, then its length can be calculated
+as $ \int_a^b | r'(t) | dt $.
+
+For a surface $z = f(x,y)$, $\mathbf{r} = x\mathbf{i} + y\mathbf{j} +
+f(x,y)\mathbf{k}$. This doesn't work for closed surfaces.
+
+% TODO: split into sections
+
+Partial Differentiation
+
+We can find the slope on a surface in different directions by fixing one value.
+For example if $z = xy$ and we fix $y$, then $\frac{\partial z}{\partial x} =
+y$. We can fix $x$ to obtain a similar result.
+
+\begin{ex}
+	\[ f(x,y) = e^{x^2y} \]
+	\[ \frac{\partial f}{\partial x} = 2xy e^{x^2y} \]
+	\[ \frac{\partial f}{\partial y} = x^2 e^{x^2y} \]
+\end{ex}
+
+\begin{ex}
+	\[ f(x,y) = x^2 - xy + y^2 \]
+	\[ \frac{\partial f}{\partial x} = 2x - y \]
+	\[ \frac{\partial ^2 f}{\partial y \partial x} = -1 \]
+\end{ex}
+
+\begin{thm}[Chain Rule]
+	\[ \frac{d}{dx} f(u(x)) = \frac{df}{du} \frac{du}{dx} \]
+\end{thm}
+
+\begin{proof}
+	\[ \frac{u(x+h) - u(x)}{h} \to u'(x) as h \to 0 \]
+	\[ let v = \frac{u(x+h) - u(x)}{h} - u'(x), v \to 0 as h \to 0 \]
+	\[ \implies u(x+h) = u(x) + (u'(x) + v)h \]
+	\[ let w = \frac{f(u+k) - f(u)}{k} - f'(u), w \to 0 as k \to 0 \]
+	\[ \implies f(u+k) = f(u) + (f'(u) + w)k \]
+	\[ \frac{df}{dx} = \frac{f(u(x+h) - f(u(x))}{h} \]
+	\[ f(u(x+h) - f(u(x))= f(u(x) + (u'(x)+v)h) - f(u(x))  = (f'(u(x) +
+	w)(u'(x) + v), \]
+	where $k = (u'(x)+v)h$, $k \to 0$ as $h \to 0$
+	\[ \implies \lim_{h \to 0} \frac{f(u(x+h)) - f(u(x))}{h} =
+	f'(u(x))u'(x) \]
+
+\end{proof}
+
+\end{document}
