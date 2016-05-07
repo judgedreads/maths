@@ -121,4 +121,83 @@ y$. We can fix $x$ to obtain a similar result.
 
 \end{proof}
 
+\begin{lemma}
+	If $z(t) = (x(t), y(t))$ then
+	\[ \frac{dz}{dt} = \frac{\partial z}{\partial x}\frac{dx}{dt} +
+	\frac{\partial z}{\partial y}\frac{dy}{dt}. \]
+\end{lemma}
+
+\begin{proof}
+	\[ \frac{dz}{dt} = \frac{z(x(t+h), y(t+h)) - z(x(t), y(t))}{h} \]
+	\[ = \frac{z(x(t+h), y(t+h)) - z(x(t), y(t+h))}{h} + \frac{z(x(t),
+	y(t+h)) - z(x(t), y(t))}{h} \]
+
+	We now have two differences, one with $y$ fixed and the other with
+	$x$ fixed. Applying the chain rule to each one, we obtain:
+
+	\[ \frac{dz}{dt} = \frac{\partial z}{\partial x} x'(t) + \frac{\partial
+	z}{\partial y} y'(t) \]
+\end{proof}
+
+Tangents
+
+If $\mathbf{r}(t)$ is a point in space, then the vector tangent to it is $r(t) + \lambda
+\mathbf{r}'(t)$.
+
+\begin{ex}
+	\[
+		\mathbf{r}(t) =
+		\begin{pmatrix}
+			t^2 \\ t^3 \\ t^4
+		\end{pmatrix}
+		, t \in \RR
+	\]
+	\[
+		\mathbf{r}'(t) =
+		\begin{pmatrix}
+			2t \\ 3t^2 \\ 4t^3
+		\end{pmatrix}
+	\]
+
+	At $t=2$ we have:
+
+	\[
+		\begin{pmatrix}
+			4 \\ 8 \\ 16
+		\end{pmatrix}
+		+ \lambda
+		\begin{pmatrix}
+			4 \\ 12 \\ 32
+		\end{pmatrix}
+		, \lambda \in \RR
+	\]
+\end{ex}
+
+Similarly, a tangent plane can be described with a vector to the tangent point
+and the two partial derivatives.
+
+\[ \mathbf{p} = \mathbf{r}(x_0, y_0)
++ \lambda \frac{\partial \mathbf{r}}{\partial x}(x_0, y_0)
++ \lambda \frac{\partial \mathbf{r}}{\partial y}(x_0, y_0)
+, \lambda, \mu \in \RR \]
+
+\begin{ex}
+	Find the tangent to $x^2 + y^2 + z^2 = 9$ at $(1,2,2)$.
+
+	\[ \mathbf{r} = (x,y,z), z = (9 - x^2 - y^2)^{1/2} \]
+
+	\[ \frac{\partial \mathbf{r}}{\partial x} = (1, 0, \partial z /
+	\partial x) \]
+	\[ \frac{\partial \mathbf{r}}{\partial y} = (0, 1, \partial z /
+	\partial y) \]
+
+	\[ \frac{\partial z}{\partial x} = - \frac{x}{(9-x^2-y^2)^{1/2}} \]
+	\[ \frac{\partial z}{\partial y} = - \frac{y}{(9-x^2-y^2)^{1/2}} \]
+
+	Plugging in the values $x=1$ and $y=2$ we obtain:
+
+	\[ \mathbf{p} = (1,2,2) + \lambda (1, 0, 1/2) + \mu (0, 1, -1) \]
+\end{ex}
+
+
 \end{document}
