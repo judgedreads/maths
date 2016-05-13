@@ -182,7 +182,7 @@ and the two partial derivatives.
 , \lambda, \mu \in \RR \]
 
 \begin{ex}
-	Find the tangent to $x^2 + y^2 + z^2 = 9$ at $(1,2,2)$.
+	Find the plane tangent to $x^2 + y^2 + z^2 = 9$ at $(1,2,2)$.
 
 	\[ \mathbf{r} = (x,y,z), z = (9 - x^2 - y^2)^{1/2} \]
 
@@ -196,8 +196,45 @@ and the two partial derivatives.
 
 	Plugging in the values $x=1$ and $y=2$ we obtain:
 
-	\[ \mathbf{p} = (1,2,2) + \lambda (1, 0, 1/2) + \mu (0, 1, -1) \]
+	\[ \mathbf{p} = (1,2,2) + \lambda (1, 0, -1/2) + \mu (0, 1, -1) \]
 \end{ex}
 
+\begin{ex}
+	Find the plane tangent to $z = 1 - 1/4 x^2 - y^2$ at $(1,1/2,1/2)$.
 
+	\[ \frac{\partial z}{\partial x} = -1/2 x \]
+	\[ \frac{\partial z}{\partial y} = -2y \]
+
+	Plugging in the values $x=1$ and $y=1/2$ we obtain:
+
+	\[ \mathbf{p} = (1,1/2,1/2) + \lambda (1, 0, -1/2) + \mu (0, 1, -1) \]
+\end{ex}
+
+Directional Derivatives
+
+Let $\mathbf{r} = \left(x_0 + tn_1, y_0 + tn_2, z(x_0 + tn_1, y_0 +
+tn_2)\right)$ describe a curve in the plane, where $\mathbf{n} = (n_1, n_2)$ is
+the direction vector and $t \in \RR$.
+
+\[ \frac{d\mathbf{r}}{dt} = \left(n_1, n_2, n_1 \frac{\partial z}{\partial x}
+(x_0 + tn_1, y_0 + tn_2) + n_2 \frac{\partial z}{\partial x} (x_0 + tn_1, y_0 +
+tn_2)\right) \]
+
+Given that the gradient of a curve can be expressed as $\frac{z}{\sqrt{x^2 +
+y^2}}$,
+
+\[ \frac{\frac{\partial z}{\partial x} n_1 + \frac{\partial z}{\partial y}
+n_2}{\sqrt{n_1^2 + n_2^2}} \]
+
+Hence the slope on the surface $z$ in the direction of $n$ is given by:
+
+\[ \bigtriangledown z \mathbf{\hat{n}} \]
+
+\begin{ex}
+	\[ z(x,y) = 4 - x^2 - y^2, n = (1,1) \]
+	\[ \bigtriangledown z = (-2x, -2y) = (-2, -2) \]
+	\[ \mathbf{\hat{n}} = \frac{\sqrt{2}}{2} (1,1) \]
+	\[ \bigtriangledown z \mathbf{\hat{n}} = \frac{-4}{\sqrt{2}}
+	   = -2 \sqrt{2} \]
+\end{ex}
 \end{document}
