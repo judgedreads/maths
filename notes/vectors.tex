@@ -237,4 +237,31 @@ Hence the slope on the surface $z$ in the direction of $n$ is given by:
 	\[ \bigtriangledown z \mathbf{\hat{n}} = \frac{-4}{\sqrt{2}}
 	   = -2 \sqrt{2} \]
 \end{ex}
+
+\begin{ex}
+	$f(x,y,z) = e^{xyz}$ at $(2,-1,2)$ with $n = (1,1,1)$
+	\[ \bigtriangledown f = (yze^{xyz}, xze^{xyz}, xye^{xyz})
+		= (-2e^{-4}, 4e^{-4}, -2^{-4}) \]
+	\[ \mathbf{\hat{n}} = 1/\sqrt{3}(1,1,1) \]
+	\[ \bigtriangledown f \cdot \mathbf{\hat{n}} = 1/\sqrt{3}(-2e^{-4} +
+	4e^{-4} - 2e^{-4}) = 0 \]
+\end{ex}
+
+Greatest Slope
+
+\[ \bigtriangledown z \cdot \mathbf{\hat{n}} = |\bigtriangledown
+z||\mathbf{\hat{n}}|\cos \theta \]
+
+In order to maximise this, we let $\cos \theta = 1$ and given that
+$\mathbf{\hat{n}}$ is a unit vector, the greatest slope is $|\bigtriangledown
+z|$. Therefore, the direction of the greatest slope is in the direction of
+$\bigtriangledown z$, since $|a|^2 = a \cdot a$.
+
+\begin{ex}
+	$z(x,y) = 4 - x^2 - y^2$ at $(1,1)$
+	\[ \bigtriangledown z = (-2,-2) \]
+	\[ |\bigtriangledown z| = 2\sqrt{2} \]
+\end{ex}
+
+
 \end{document}
