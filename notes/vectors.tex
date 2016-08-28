@@ -12,7 +12,7 @@
 \begin{proof}
 	\[
 	a = |\vec{BC}| = |-\vec{AC} + \vec{AB}|
-	= \left|\begin{pmatrix}-b\\0\end{pmatrix} + 
+	= \left|\begin{pmatrix}-b\\0\end{pmatrix} +
 		c\begin{pmatrix}\cos\theta\\\sin\theta\end{pmatrix}\right|
 	\]
 	\[
@@ -24,15 +24,15 @@
 A plane is described by a point and two linearly independent vectors i.e.
 \[\mathbf{r}(\lambda, \mu) = \mathbf{a} + \lambda \mathbf{u} + \mu \mathbf{v}\]
 
-A plane can also in Cartesian form i.e.
+A plane can also be expressed in Cartesian form i.e.
 \[ax + by + cz = d\]
 
 \begin{ex}
 	\[
-		\mathbf{r} = 
+		\mathbf{r} =
 		\begin{pmatrix}
 			1\\2\\3
-		\end{pmatrix} 
+		\end{pmatrix}
 		+ \lambda
 		\begin{pmatrix}
 			1\\1\\1
@@ -41,7 +41,7 @@ A plane can also in Cartesian form i.e.
 		\begin{pmatrix}
 			2\\1\\0
 		\end{pmatrix}
-		\, \lambda, \mu \in \RR 
+		\, \lambda, \mu \in \RR
 	\]
 	\[ x = 1 + \lambda + 2\mu \]
 	\[ y = 2 + \lambda + \mu \]
@@ -59,7 +59,7 @@ A plane can also in Cartesian form i.e.
 	\[ \tf \mathbf{r} \cdot \mathbf{n} = \mathbf{a} \cdot \mathbf{n} \]
 
 	We can calculate the normal vector using the cross product:
-	\[ 
+	\[
 		\begin{pmatrix}
 			1\\1\\1
 		\end{pmatrix}
@@ -74,7 +74,7 @@ A plane can also in Cartesian form i.e.
 	\]
 	\[ \tf -x + 2y - z = -1 + 4 - 3 \tf x - 2y + z = 0 \]
 \end{ex}
-	
+
 % Put this in curves and surfaces?
 If $r(t)$ is a parameterisation of a curve, then its length can be calculated
 as $ \int_a^b | r'(t) | dt $.
@@ -286,5 +286,50 @@ Let $f(x,y)$ be a surface, the volume underneath it is
 	\[ = 1/3 \left( 256 - 1024/10 - 16 + 1/10 \right) = 45.9 \]
 
 \end{ex}
+
+Polar Coordinates
+
+When changing coordinate system, we have to take into account how that affects
+differentiation and integration.
+
+Let $\mathbf{r}(x,y) = x \mathbf{i} + y \mathbf{j}$. A change of $dx$ and $dy$
+would give:
+
+\[ (x + dx)\mathbf{i} + y\mathbf{j} - (x\mathbf{i} + y\mathbf{j}) =
+dx\mathbf{i} \]
+\[ x\mathbf{i} + (y + dy)\mathbf{j} - (x\mathbf{i} + y\mathbf{j}) =
+dy\mathbf{j} \]
+
+The differential area can be calculated using the cross product (think about
+the area of a parallelogram). Given that $dx$ and $dy$ are just scalars, and
+$\mathbf{i}$ and $\mathbf{j}$ are orthogonal unit vectors:
+
+\[ |dx\mathbf{i} \times dy\mathbf{j}| = |dxdy\mathbf{k}| = dxdy \]
+
+Now lets see how things change when we switch to polar coordinates. Let
+$\mathbf{f}(r,\theta) = r\cos\theta\mathbf{i} + r\sin\theta\mathbf{j}$.
+
+A change by $dr$ yields:
+\[ (r+dr)\cos\theta\mathbf{i} + (r+dr)\sin\theta\mathbf{j} -
+r\cos\theta\mathbf{i} - r\sin\theta\mathbf{j} \]
+\[ = dr(\cos\theta\mathbf{i} + \sin\theta\mathbf{j} \]
+
+A change by $d\theta$ yields:
+\[ r\cos(\theta + d\theta)\mathbf{i} + r\sin(\theta + d\theta)\mathbf{j} -
+r\cos\theta\mathbf{i} - r\sin\theta\mathbf{j} \]
+\[ = r\left(\cos(\theta + d\theta) - \cos(\theta)\right)\mathbf{i}
++ r\left(\sin(\theta + d\theta) - \sin(\theta)\right)\mathbf{j} \]
+
+Given that:
+\[ \frac{d}{d\theta} \cos\theta = \frac{\cos(\theta + d\theta) -
+\cos\theta}{d\theta} \]
+
+We find that a change by $d\theta$ is simply:
+\[ -r\sin(\theta)d\theta \mathbf{i} + r\cos(\theta)d\theta \mathbf{j} \]
+
+Now we compute the full differential area:
+\[ | dr(\cos\theta \mathbf{i} + \sin\theta \mathbf{j}) \wedge
+d\theta(-r \sin\theta \mathbf{i} + r\cos\theta \mathbf{j} | \]
+\[ = | r\cos^2\theta + r\sin^2\theta | drd\theta = rdrd\theta \]
 
 \end{document}
