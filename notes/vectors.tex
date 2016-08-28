@@ -332,4 +332,48 @@ Now we compute the full differential area:
 d\theta(-r \sin\theta \mathbf{i} + r\cos\theta \mathbf{j} | \]
 \[ = | r\cos^2\theta + r\sin^2\theta | drd\theta = rdrd\theta \]
 
+\begin{ex}
+	\[ I = \int \int x^2 y^2 dxdy \]
+	\[ = \int_0^{\pi} \int_0^1 (r^2 \cos^2\theta)(r^2 \sin^2\theta)
+	rdrd\theta \]
+	\[ = \int_0^{\pi} \cos^2\theta \sin^2\theta d\theta
+	\int_0^1 r^5 dr \]
+
+	Given that $\cos2\theta = \cos^2\theta - \sin^2\theta$, we have:
+
+	\[ \sin^2\theta = \frac{1}{2} - \frac{1}{2} \cos2\theta \]
+	\[ \cos^2\theta = \frac{1}{2} + \frac{1}{2} \cos2\theta \]
+
+	Hence:
+
+	\[
+		\sin^2\theta \cos^2\theta =
+		(\frac{1}{2} - \frac{1}{2} \cos2\theta)
+		(\frac{1}{2} + \frac{1}{2} \cos2\theta)
+	\]
+	\[
+		= \frac{1}{4} - \frac{1}{4} \cos^2 2\theta
+	\]
+	\[
+		= \frac{1}{4} - \frac{1}{4}
+		(\frac{1}{2} + \frac{1}{2} \cos4\theta)
+	\]
+	\[
+		= \frac{1}{8} - \frac{1}{8} \cos4\theta
+	\]
+	\[
+		\int_0^{\pi} \frac{1}{8} - \frac{1}{8} \cos4\theta d\theta =
+		\left[ \theta + \sin4\theta \right]_0^{\pi} = \pi/8
+	\]
+	\[
+		\int_0^1 r^5 dr = \left[ \frac{1}{6} r^6 \right]_0^1
+		= \frac{1}{6}
+	\]
+
+	Therefore,
+
+	\[ I = \pi/48. \]
+
+\end{ex}
+
 \end{document}
