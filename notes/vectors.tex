@@ -376,4 +376,202 @@ d\theta(-r \sin\theta \mathbf{i} + r\cos\theta \mathbf{j} | \]
 
 \end{ex}
 
+We can generalise this concept of coordinate transformation for a
+generic function
+$ \mathbf{r} (s,t) = x(s,t)\mathbf{i} + y(s,t)\mathbf{j}$.
+
+Changing by $ds$:
+\[
+	\frac{d\mathbf{r}}{ds} ds =
+	\left( \frac{dx}{ds}\mathbf{i} + \frac{dy}{ds}\mathbf{j} \right) ds
+\]
+
+Changing by $dt$:
+\[
+	\frac{d\mathbf{r}}{dt} dt =
+	\left( \frac{dx}{dt}\mathbf{i} + \frac{dy}{dt}\mathbf{j} \right) dt
+\]
+
+The resultant change in area is:
+\[
+	| \frac{dr}{ds}ds \wedge \frac{dr}{dt}dt |
+	= | \frac{dx}{ds}\frac{dy}{dt} - \frac{dx}{dt}\frac{dy}{ds} | dsdt
+\]
+
+This leads us to the following definition.
+
+% TODO: these should be partial derivatives (and above)
+\begin{defn}[Jacobian]
+	Let $x = x(s,t)$, $y = y(s,t)$, then
+	$J(s,t) = |\frac{dx}{ds}\frac{dy}{dt} - \frac{dx}{dt}\frac{dy}{ds}|$
+	is the Jacobian.
+\end{defn}
+
+\begin{ex}[Ellipse]
+	Let $x = r\cos\theta$, $y = \frac{b}{a}r\sin\theta$. Let $\Omega$ be the
+	region where $0 <= \theta <= 2\pi$, $0 <= r <= a$.
+
+	\[
+		J(r,\theta) = \left| \frac{\partial x}{\partial r}
+		\frac{\partial y}{\partial \theta} -
+		\frac{\partial x}{\partial \theta}
+		\frac{\partial y}{\partial r} \right|
+	\]
+	\[
+		\frac{\partial x}{\partial r} = \cos\theta
+		\quad
+		\frac{\partial x}{\partial \theta} = -r \sin\theta
+	\]
+	\[
+		\frac{\partial y}{\partial r} = \frac{b}{a} \sin\theta
+		\quad
+		\frac{\partial y}{\partial \theta} = \frac{b}{a}r \cos\theta
+	\]
+	\[
+		\Rightarrow J(r,\theta) = \left| \frac{b}{a}r \cos^2\theta +
+		\frac{b}{a}r \sin^2\theta \right| = \frac{b}{a}r
+	\]
+	\[
+		\Rightarrow \int\int_{\Omega} dxdy =
+		\int_0^{2\pi} \int_0^a \frac{b}{a}r drd\theta
+	\]
+	\[
+		= \int_0^{2\pi} \frac{ba}{2} d\theta = ab\pi
+	\]
+\end{ex}
+
+Surface Area
+
+Take a parallelogram with corners:
+
+\[
+	A = \begin{pmatrix}
+		x \\
+		y \\
+		f(x,y)
+	\end{pmatrix}
+	B = \begin{pmatrix}
+		x+dx \\
+		y \\
+		f(x+dx,y)
+	\end{pmatrix}
+	C = \begin{pmatrix}
+		x \\
+		y+dy \\
+		f(x,y+dy)
+	\end{pmatrix}
+	D = \begin{pmatrix}
+		x+dx \\
+		y+dy \\
+		f(x+dx,y+dy)
+	\end{pmatrix}
+\]
+
+We then calculate the area of this using the cross product:
+
+\[
+	\vec{AB} =
+	\begin{pmatrix}
+		x+dx \\
+		y \\
+		f(x+dx,y)
+	\end{pmatrix}
+	-
+	\begin{pmatrix}
+		x \\
+		y \\
+		f(x,y)
+	\end{pmatrix}
+	=
+	dx
+	\begin{pmatrix}
+		1 \\
+		0 \\
+		\partial f / \partial x
+	\end{pmatrix}
+\]
+\[
+	\vec{AC} =
+	\begin{pmatrix}
+		x \\
+		y+dy \\
+		f(x,y+dy)
+	\end{pmatrix}
+	-
+	\begin{pmatrix}
+		x \\
+		y \\
+		f(x,y)
+	\end{pmatrix}
+	=
+	dy
+	\begin{pmatrix}
+		0 \\
+		1 \\
+		\partial f / \partial y
+	\end{pmatrix}
+\]
+\[
+	\vec{AB} \wedge \vec{AC} =
+	dxdy
+	\begin{vmatrix}
+		i & j & k \\
+		1 & 0 & \partial f / \partial x \\
+		0 & 1 & \partial f / \partial y
+	\end{vmatrix}
+	=
+	dxdy
+	\begin{pmatrix}
+		- \partial f / \partial x \\
+		- \partial f / \partial y \\
+		1
+	\end{pmatrix}
+\]
+\[
+	area = dxdy
+	\begin{vmatrix}
+		- \partial f / \partial x \\
+		- \partial f / \partial y \\
+		1
+	\end{vmatrix}
+	=
+	dxdy
+	\left(
+		(\partial f / \partial x)^2,
+		(\partial f / \partial y)^2,
+		1
+	\right)^{1/2}
+\]
+
+To get the full surface area, we need to sum these parallelograms. To do
+this, we use integration, similarly to calculating the length of a
+curve. In fact, this is essentially a two dimensional analogue.
+
+Generalising our derivation, by using the fact that our parallelograms
+are constructed by partial derivatives, we arrive at the following
+formula for surface area.
+
+Let $r(s,t) = (x(s,t), y(s,t), z(s,t))$ where $s,t \in R$, and $R$ is the
+region of surface area. The surface area is calulated by:
+
+\[
+	S = \int \int_R \left| \frac{\partial r}{\partial s} \wedge
+	\frac{\partial r}{\partial t} \right| dsdt
+\]
+
+Notice from our derivation of this formula that if the surface can be
+expressed as $(x,y,f(x,y))$, the surface area is much simpler:
+
+\[
+	S = \int \int_R \left|
+	\left(
+		(\partial f / \partial x)^2,
+		(\partial f / \partial y)^2,
+		1
+	\right)^{1/2}
+	\right|
+	dxdy
+\]
+
+
 \end{document}
