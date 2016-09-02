@@ -573,5 +573,61 @@ expressed as $(x,y,f(x,y))$, the surface area is much simpler:
 	dxdy
 \]
 
+\begin{ex}
+	Let $z=xy$ and let$R$ be the cylinder defined by $x^2 + y^2 = 1$.
+
+	\begin{align*}
+		S &= \int \int_R \left( x^2 + y^2 + 1 \right)^{1/2} dxdy \\
+		&= \int_0^{2\pi} \int_0^1 r(1+r^2)^{1/2} drd\theta \\
+		&= \int_0^{2\pi}
+		\left[
+			\frac{1}{2} \frac{2}{3} (1+r^2)^{3/2}
+		\right]_0^1 d\theta \\
+		&= \frac{1}{3} \int_0^{2\pi} 2^{3/2} - 1 d\theta \\
+		&= \frac{1}{3} \sqrt{8} 2\pi - 2\pi \\
+		&= \frac{2\pi}{3} (\sqrt{8} - 1)
+	\end{align*}
+\end{ex}
+
+% TODO: move this to another file
+Differential Equations
+
+\begin{defn}[Fixed Point]
+	Let $f(x) = \frac{dx}{dt}$ then $x^*$ is a fixed point if $f(x^*) = 0$.
+	Furthermore, fixed points can be stable or unstable:
+	\begin{align*}
+		f'(x^*) &> 0 \Rightarrow unstable \\
+		f'(x^*) &< 0 \Rightarrow stable \\
+		f'(x^*) &= 0 \Rightarrow constant
+	\end{align*}
+\end{defn}
+
+Let $x^*$ be a fixed point for $f(x) = \frac{dx}{dt}$. We can express
+points around $x^*$ as $x(t) = x^* + z(t)$, where $z$ is small.
+
+Given that $\frac{d}{dt}(x^* + z(t)) = f(x^* + z(t))$ and
+$\frac{d}{dt}(x^*) = 0$, we have
+\[
+	\frac{dz}{dt} = f(x^* + z(t))
+\]
+
+We can expand $f(x)$ around the point $x^*$ using a Taylor series:
+\[
+	f(x) = f(x^*) + f'(x^*)(x - x^*) + \frac{1}{2}f''(x^*)(x - x^*)^2 + \dots \\
+\]
+With $x = x^* + z$ we have:
+\[
+	f(x^* + z) = f(x^*) + f'(x^*)z + \frac{1}{2}f''(x^*)z^2 + \dots \\
+\]
+$z$ is small by assumption so we ignore terms with $z^2$ and onwards, yielding:
+\[
+	\frac{dz}{dt} = f(x^* + z) = f(x^*) + f'(x^*)z
+\]
+Given that $f(x^*) = 0$, we have
+\[
+	\frac{dz}{dt} = f'(x^*)z
+\]
+
+We now aim to find a set of such functions $z(t)$ satisfying this equation.
 
 \end{document}
