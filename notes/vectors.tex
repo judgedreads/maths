@@ -629,5 +629,70 @@ Given that $f(x^*) = 0$, we have
 \]
 
 We now aim to find a set of such functions $z(t)$ satisfying this equation.
+\[
+	\frac{dz}{dt} = \lambda z, \quad \lambda = f'(x)
+\]
+
+We look for a solution of the form $Ce^{kt}$, where $C$ is constant,
+since $\frac{d}{dt} e^t = e^t$.
+
+\begin{gather*}
+	z(t) = Ce^{kt} \\
+	\Rightarrow z'(t) = kCe^{kt} = \lambda z = \lambda Ce^{kt} \\
+	\Rightarrow k = \lambda \\
+	\Rightarrow z(t) = Ce^{\lambda t} \\
+	z(0) = C \\
+	\Rightarrow z(t) = z(0)e^{\lambda t}
+\end{gather*}
+
+If $\lambda < 0$, $z \to 0$ as $t \to \inf$ (stable). \\
+If $\lambda > 0$, $z \to \inf$ as $t \to \inf$ (unstable). \\
+If $\lambda = 0$, $z$ is constant.
+
+Linear First Orders
+
+\[
+	\frac{dy}{dx} + p(x)y = q(x)
+\]
+
+We want to get the LHS in the form
+\[
+	y\frac{dg}{dx} + g\frac{dy}{dx} = \frac{d}{dx} gy
+\]
+so that we can solve with one integral.
+
+Mutliplying through by $g(x)$ we get:
+\begin{gather*}
+	g(x)\frac{dy}{dx} + g(x)p(x)y = y\frac{dg}{dx} + g\frac{dy}{dx} \\
+	\Rightarrow \frac{dg}{dx} = p(x)g(x) \\
+	\Rightarrow \int \frac{1}{g(x)} \frac{dg}{dx} dx = \int p(x) dx \\
+	\Rightarrow \ln |g(x)| = \int p(x) dx \\
+	\Rightarrow g(x) = e^{\int p(x) dx}
+\end{gather*}
+
+So now we need to solve
+\[
+	g(x)\frac{dy}{dx} + g(x)p(x)y = g(x)q(x)
+\]
+which can be simplified to
+\[
+	\frac{d}{dx} gy = gq
+\]
+
+Substituting in $g(x)$ we have:
+\[
+	y = e^{\int p} \int q e^{\int p} dx
+\]
+
+\begin{ex}
+	\begin{gather*}
+		\frac{dy}{dx} - \frac{y}{x^2} = - \frac{1}{x^2} \\
+		\Rightarrow g(x) = \exp{\int -x^{-2}} = e^{1/x} \\
+		\Rightarrow \frac{d}{dx} gy = - \frac{e^{1/x}}{x^2} \\
+		\Rightarrow y e^{1/x} = e^{1/x} + c
+	\end{gather*}
+
+	Using the original equation, it is easy to see that $c=0$ and $y=1$.
+\end{ex}
 
 \end{document}
