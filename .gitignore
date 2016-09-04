@@ -1,5 +1,8 @@
-# tex output files
+# latexmk/pdflatex output files
 *.aux
 *.log
 *.pdf
+*.dvi
 *.synctex.gz
+*.fls
+*.fdb_latexmk
