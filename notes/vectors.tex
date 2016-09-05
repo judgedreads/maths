@@ -695,4 +695,194 @@ Substituting in $g(x)$ we have:
 	Using the original equation, it is easy to see that $c=0$ and $y=1$.
 \end{ex}
 
+\begin{defn}[Homogeneous Equation]
+	A differential equation is homogeneous if there are no terms
+	without a derivative of $y$ (or $y$ itself), e.g.
+	\[
+		\frac{dy}{dx} + f(x)y = 0
+	\]
+\end{defn}
+
+\begin{defn}[Eigen Function]
+	An Eigen function is a function that when passed through another
+	function results in multiplication, e.g.
+	\[ \frac{d}{dx} e^{kx} = ke^{kx} \]
+	Here $e^{kx}$ is the Eigen function that when passed through
+	$\frac{d}{dx}$ results in multiplication by $k$, which is
+	refered to as the Eigen value.
+\end{defn}
+
+We will use these definitions to solve linear second order O.D.Es.
+
+\begin{ex}
+	\[
+		\frac{d^2y}{dx^2} + 6 \frac{dy}{dx} + 9y = 0
+	\]
+
+	We try $y = e^{mx}$ as we are aware that it is an Eigen function
+	under differentiation. Plugging in, we get:
+
+	\begin{gather*}
+		(m^2 + 6m + 9)e^{mx} = 0 \\
+		m^2 + 6m + 9 = 0 \\
+		(m+3)^2  = 0 \\
+		m = -3
+	\end{gather*}
+
+	The general form of these solutions is $(Ax+B)e^{mx}$.
+
+	We know from our particular solution that $y(0) = 1$ and $y'(0)
+	= 1$, hence $B = 1$ and
+
+	\begin{gather*}
+		\left(-3(Ax+B)e^{-3x} + Ae^{-3x}\right)(0) = 1 \\
+		\Rightarrow -3B + A = 1 \\
+		\Rightarrow A = 4
+	\end{gather*}
+
+	So our general solution is
+	\[
+		y = (4x+1)e^{-3x}
+	\]
+\end{ex}
+
+\begin{ex}
+	\[
+		\frac{d^2y}{dx^2} + \frac{dy}{dx} + y = 0
+	\]
+
+	\begin{gather*}
+		m^2 + m + 1 = 0 \\
+		m = \frac{-1 \pm \sqrt{1-4}}{2} \\
+		= \frac{-1 \pm \sqrt{3}i}{2}
+	\end{gather*}
+
+	Given that
+	\[
+		e^{i\theta} = \cos{\theta} + i\sin{\theta}
+	\]
+	we have
+	\[
+		e^{mx} = e^{-x/2}\left(\cos(\pm \frac{\sqrt{3}}{2}x)
+		+ i\sin(\pm\frac{\sqrt{3}}{2}x)\right)
+	\]
+	and given that
+	\begin{align*}
+		\cos(-\theta) &= \cos(\theta) \\
+		\sin(-\theta) &= -\sin(\theta)
+	\end{align*}
+	our particular solution can be simplified to
+	\[
+		y = e^{-x/2}\left(\cos \frac{\sqrt{3}}{2}x
+		\pm i\sin\frac{\sqrt{3}}{2}x\right)
+	\]
+
+	The general solution $y = (Ax+B)e^{mx}$:
+	\begin{align*}
+		y(0) &= 1 \Rightarrow B = 1 \\
+		y'(0) &= \left( (Ax+B)me^{mx} + Ae^{mx} \right)(0) = 1 \\
+		\Rightarrow A &= 1 - m(0) \\
+		&= 1 - e^{0}\left(\cos(0) \pm i\sin(0)\right) \\
+		&= 1 - 1 \\
+		&= 0 \\
+		\Rightarrow y &= e^{-x/2}\left(\cos \frac{\sqrt{3}}{2}x
+		\pm i\sin \frac{\sqrt{3}}{2}x\right)
+	\end{align*}
+\end{ex}
+
+We now look at some inhomogeneous equations.
+
+\begin{ex}
+	\[
+		\frac{d^2}{dx^2} - 4\frac{dy}{dx} + 5y = 1
+	\]
+	We try a scalar value for $y$ since the RHS is scalar: $y =
+	\frac{1}{5}$. It is easy to see that this is a particular
+	solution.
+\end{ex}
+
+\begin{ex}
+	\[
+		\frac{d^2}{dx^2} - 4\frac{dy}{dx} + 4y = x
+	\]
+	We now try $y = Ax+B$ since the RHS is $x$. Plugging in we get:
+	\[
+		0 - 4A + 4Ax + 4B = x
+	\]
+	from which it is quite easy to see that $A = B = \frac{1}{4}$. Hence
+	\[
+		y = \frac{1}{4}x + \frac{1}{4}
+	\]
+\end{ex}
+
+\begin{ex}
+	\[
+		\frac{d^2}{dx^2} + 4\frac{dy}{dx} + 5y = x^2
+	\]
+	We now try $y = Ax^2 + Bx + C$:
+	\begin{gather*}
+		2A + 8Ax + 4B + 5Ax^2 + 5Bx + 5C = x^2 \\
+		\Rightarrow A = \frac{1}{5} \\
+		\Rightarrow \frac{2}{5} + \frac{8}{5}x + 4B + 5Bx + 5C = 0 \\
+		\Rightarrow 5B = -\frac{8}{5} \\
+		\Rightarrow B = -\frac{8}{25} \\
+		\Rightarrow \frac{2}{5} - \frac{32}{25} = -5C \\
+		\Rightarrow C = \frac{22}{125} \\
+		\Rightarrow y = \frac{1}{5}x^2 - \frac{8}{25} x + \frac{22}{125}
+	\end{gather*}
+\end{ex}
+
+\begin{ex}
+	\[
+		\frac{d^2}{dx^2} - 3\frac{dy}{dx} + y = 3\cos x
+	\]
+	We try $y = A\sin x + B \cos x$
+	\begin{gather*}
+		-A\sin x - B\cos x - 3A\cos x + 3B\sin x + A\sin x + B\cos x
+		= 3\cos x \\
+		\Rightarrow -A + 3B + A = 0 \Rightarrow B = 0 \\
+		\Rightarrow -B - 3A + B = 3 \Rightarrow A = -1 \\
+		\Rightarrow y = -\sin x
+	\end{gather*}
+\end{ex}
+
+To get the general solution to a second order linear inhomogeneous
+equation, we need to find the general solution to the corresponding
+homogeneous function, $y_c$, and the particular solution to the
+inhomogeneous equation, $y_p$. Then the general solution to the
+inhomogeneous equation is given by
+\[
+	y = y_c + y_p
+\]
+
+\begin{ex}
+	\[
+		\frac{d^2}{dx^2} - 4\frac{dy}{dx} + 4y = x
+	\]
+	As we saw before, $y_p = \frac{1}{4}x + \frac{1}{4}$.
+
+	The homogeneous function is:
+	\[
+		\frac{d^2}{dx^2} - 4\frac{dy}{dx} + 4y = 0
+	\]
+	We solve using the same method as earlier:
+	\begin{gather*}
+		m^2 - 4m + 4 = 0 \\
+		(m - 2)^2 = 0 \\
+		m = 2
+	\end{gather*}
+	\begin{gather*}
+		y_c = (Ax+B)e^{2x} \\
+		B = 1 \\
+		y_c' = 2(Ax+B)e^{2x} + Ae^{2x} \\
+		\Rightarrow 2B + A = 1 \Rightarrow A = -1 \\
+		\Rightarrow y_c = (1-x)e^{2x}
+	\end{gather*}
+	Now we can calculate the general solution $y = y_c + y_p$:
+	\[
+		y = (1-x)e^{2x} + \frac{1}{4}x + \frac{1}{4}
+	\]
+\end{ex}
+
+
 \end{document}
