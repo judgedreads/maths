@@ -716,33 +716,28 @@ We will use these definitions to solve linear second order O.D.Es.
 
 \begin{ex}
 	\[
-		\frac{d^2y}{dx^2} + 6 \frac{dy}{dx} + 9y = 0
+		\frac{d^2y}{dx^2} + \frac{dy}{dx} - 2y = 0
 	\]
 
 	We try $y = e^{mx}$ as we are aware that it is an Eigen function
 	under differentiation. Plugging in, we get:
 
 	\begin{gather*}
-		(m^2 + 6m + 9)e^{mx} = 0 \\
-		m^2 + 6m + 9 = 0 \\
-		(m+3)^2  = 0 \\
-		m = -3
+		(m^2 + m - 2)e^{mx} = 0 \\
+		\Rightarrow m^2 + m - 2 = 0 \\
+		\Rightarrow (m+2)(m-1) = 0 \\
+		\Rightarrow m = -2, 1
 	\end{gather*}
 
-	The general form of these solutions is $(Ax+B)e^{mx}$.
-
-	We know from our particular solution that $y(0) = 1$ and $y'(0)
-	= 1$, hence $B = 1$ and
-
-	\begin{gather*}
-		\left(-3(Ax+B)e^{-3x} + Ae^{-3x}\right)(0) = 1 \\
-		\Rightarrow -3B + A = 1 \\
-		\Rightarrow A = 4
-	\end{gather*}
-
-	So our general solution is
+	% TODO: go into detail with linear combination with Wronskian
+	% etc.
+	So we have two particular solutions to our equation, namely
+	$e^x$ and $e^{-2x}$. With two independent solutions, we can use a
+	linear combination of these to construct our general solution, much
+	in the same way that we can describe a plane using two linearly
+	independent vectors. Hence, the general solution to our equation is:
 	\[
-		y = (4x+1)e^{-3x}
+		y = Ae^x + Be^{-2x}
 	\]
 \end{ex}
 
@@ -771,23 +766,49 @@ We will use these definitions to solve linear second order O.D.Es.
 		\cos(-\theta) &= \cos(\theta) \\
 		\sin(-\theta) &= -\sin(\theta)
 	\end{align*}
-	our particular solution can be simplified to
+	our particular solutions can be simplified to
 	\[
 		y = e^{-x/2}\left(\cos \frac{\sqrt{3}}{2}x
 		\pm i\sin\frac{\sqrt{3}}{2}x\right)
 	\]
 
-	The general solution $y = (Ax+B)e^{mx}$:
-	\begin{align*}
-		y(0) &= 1 \Rightarrow B = 1 \\
-		y'(0) &= \left( (Ax+B)me^{mx} + Ae^{mx} \right)(0) = 1 \\
-		\Rightarrow A &= 1 - m(0) \\
-		&= 1 - e^{0}\left(\cos(0) \pm i\sin(0)\right) \\
-		&= 1 - 1 \\
-		&= 0 \\
-		\Rightarrow y &= e^{-x/2}\left(\cos \frac{\sqrt{3}}{2}x
-		\pm i\sin \frac{\sqrt{3}}{2}x\right)
-	\end{align*}
+	Given that we have two particular solutions, the general solution is:
+	\[
+		y = e^{-x/2}\left(A\cos \frac{\sqrt{3}}{2}x
+		\pm B\sin\frac{\sqrt{3}}{2}x\right)
+	\]
+	where $A,B \in \CC$.
+
+	In fact, if the roots of the characteristic equation are complex
+	conjugates $\alpha \pm i\beta$, then the general solution can be
+	expressed:
+	\[
+		y = Ae^{\alpha x}\cos\beta x + Be^{\alpha x}\sin\beta x
+	\]
+
+\end{ex}
+
+\begin{ex}
+	\[
+		\frac{d^2y}{dx^2} + 6 \frac{dy}{dx} + 9y = 0
+	\]
+
+	\begin{gather*}
+		(m^2 + 6m + 9)e^{mx} = 0 \\
+		m^2 + 6m + 9 = 0 \\
+		(m+3)^2  = 0 \\
+		m = -3
+	\end{gather*}
+
+	Here we get repeated roots, rather than distinct, which means we
+	can't form a general solution yet.
+
+	% TODO: explain why factor of x works.
+	The general form of these solutions is $(Ax+B)e^{mx}$, so our
+	general solution is:
+	\[
+		y = (Ax+B)e^{-3x}
+	\]
 \end{ex}
 
 We now look at some inhomogeneous equations.
@@ -869,20 +890,136 @@ inhomogeneous equation is given by
 	\begin{gather*}
 		m^2 - 4m + 4 = 0 \\
 		(m - 2)^2 = 0 \\
-		m = 2
-	\end{gather*}
-	\begin{gather*}
-		y_c = (Ax+B)e^{2x} \\
-		B = 1 \\
-		y_c' = 2(Ax+B)e^{2x} + Ae^{2x} \\
-		\Rightarrow 2B + A = 1 \Rightarrow A = -1 \\
-		\Rightarrow y_c = (1-x)e^{2x}
+		m = 2 \\
+		\Rightarrow y_c = (Ax+B)e^{2x} \\
 	\end{gather*}
 	Now we can calculate the general solution $y = y_c + y_p$:
 	\[
-		y = (1-x)e^{2x} + \frac{1}{4}x + \frac{1}{4}
+		y = (Ax+B)e^{2x} + \frac{1}{4}x + \frac{1}{4}
 	\]
 \end{ex}
 
+Variation of parameters
+
+Let $y_p = q_1(x) v_1(x) + q_2(x) v_2(x)$, then:
+\[
+	y_p' = q_1v_1' + q_1'v_1 + q_2v_2' + q_2'v_2
+\]
+Letting $q_1'v_1 + q_2'v_2 = 0$ yields
+\begin{gather*}
+	y_p' = q_1v_1' + q_2v_2' \\
+	\Rightarrow y_p'' = q_1'v_1' + q_1v_1'' + q_2'v_2' + q_2v_2''
+\end{gather*}
+
+Substituting into
+\[
+	y'' + a_1 y' + a_0 y = g(x) \\
+\]
+we get
+\begin{multline*}
+	(q_1'v_1' + q_1v_1'' + q_2'v_2' + q_2v_2'') +
+	a_1(q_1v_1' + q_1'v_1 + q_2v_2' + q_2'v_2) + \\
+	a_0(q_1v_1 + q_2v_2) = g(x)
+\end{multline*}
+
+We omit the coefficient off the $y''$ term since it can always be
+divided out and it is simpler without it.
+
+Re-aranging the above:
+\begin{multline*}
+	q_1(v_1'' + a_1v_1' + a_0v_1) + q_2(v_2'' + a_1v_2' + a_0v_2) \\
+	+ q_1'v_1' + q_2'v_2' = g(x)
+\end{multline*}
+
+Since $v_1$ and $v_2$ are solutions to the homogeneous differential
+equation, the first two terms are zero. This leaves:
+\[
+	q_1'v_1' + q_2'v_2' = g(x)
+\]
+
+By assumption we have $q_1'v_1 + q_2'v_2 = 0$ and so we now have two
+equations with which we can work out $q_1$ and $q_2$.
+
+\begin{ex}
+	\[
+		\frac{d^2y}{dx^2} + \frac{dy}{dx} - 2y = x
+	\]
+
+	The general solution of the homogeneous equation is
+	\[
+		y_c = Ae^{-2x} + Be^x
+	\]
+	So we have $v_1 = e^{-2x}$ and $v_2 = e^x$, with $g(x) = x$.
+
+	Using variation of parameters, we know that
+	$q_1'v_1' + q_2v_2' = g(x)$. We then have:
+	\begin{align*}
+		-2 q_1' e^{-2x} + q_2' e^x = x \\
+		q_1' e^{-2x} + q_2' e^x = 0
+	\end{align*}
+
+	Solve for $q_1$:
+	\begin{gather*}
+		-3q_1'e^{-2x} = x \\
+		\Rightarrow q_1' = -\frac{1}{3} xe^{2x} \\
+		\int xe^{2x} = \frac{1}{2}xe^{2x} - \frac{1}{2} \int e^{2x} dx \\
+		= \frac{1}{2}xe^{2x} - \frac{1}{4}e^{2x} + c \\
+		\Rightarrow q_1 = -\frac{1}{6}e^{2x} (x - 1/2) + c
+	\end{gather*}
+
+	Solve for $q_2$:
+	\begin{gather*}
+		3q_2'e^x = x \\
+		\Rightarrow q_2' = \frac{1}{3}xe^{-x} \\
+		\int xe^{-x} dx = -xe_{-x} - \int -e^{-x} dx \\
+		= -xe^{-x} - e{-x} +c \\
+		\Rightarrow q_2 = -\frac{1}{3}e^{-x}(x+1) + c
+	\end{gather*}
+
+	So our particular solution is:
+	\begin{align*}
+		y_p &= -\frac{x}{6} + \frac{1}{12} + c_1e^{-2x}
+		- \frac{x}{3} - \frac{1}{3} + c_2e^x \\
+		&= -\frac{x}{2} - \frac{1}{4} + c_1e^{-2x} + c_2e^x
+	\end{align*}
+
+	Combining with the homogeneous solution, we get our general solution:
+	\[
+		y = Ae^{-2x} + Be^{x} - \frac{x}{2} - \frac{1}{4}
+	\]
+\end{ex}
+
+\begin{ex}
+	\[
+		\frac{d^2y}{dx} + y = 1 + \tan x
+	\]
+
+	Since $g(x)$ is trigonometric, we choose our solution of the
+	homogeneous in the form
+	\[
+		y_c = A\cos x + B\sin x
+	\]
+
+	\begin{align*}
+		-q_1'\sin x + q_2'\cos x &= 1 + \tan x \\
+		q_1'\cos x + q_2\sin x &= 0
+	\end{align*}
+
+	Solving for $q_2$:
+	\begin{gather*}
+		-q_1'\sin x \cos x + q_2'\cos^2x = \cos x + \sin x \\
+		q_1' \sin x \cos x + q_2'\sin^2x = 0\\
+		\Rightarrow q_2' = \cos x + \sin x \\
+		\Rightarrow q_2 = \sin x - \cos x
+	\end{gather*}
+
+	Solving for $q_1$:
+	\begin{gather*}
+		q_1'\sin^2x - q_2'\cos x \sin x = -\sin x - \sin x \tan x \\
+		q_1'\cos^2x + q_2'\cos x \sin x = 0 \\
+		\Rightarrow q_1' = -\sin x - \sin x \tan x \\
+		\Rightarrow q_1 = \cos x - \int \sin x \tan x dx
+	\end{gather*}
+\end{ex}
 
 \end{document}
