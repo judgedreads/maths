@@ -65,6 +65,21 @@ func subVars(expr string, vars []string) (string, error) {
 	return expr, nil
 }
 
+// TODO: using pointers seems bad, maybe a struct would be good here?
+// Could group the output, stack, and buf onto one struct?
+func flushBuf(b []byte, output, stack *[]string) []byte {
+	if len(b) == 0 {
+		return b
+	}
+	s := string(b)
+	if isFunc(s) {
+		*stack = append(*stack, s)
+	} else {
+		*output = append(*output, s)
+	}
+	return b[:0]
+}
+
 // shuntingYard applies the Dijkstra algorithm of the same name to an
 // expression in "infix" notation, returning an expression in postfix
 // (Reverse Polish Notation).
@@ -93,10 +108,7 @@ func shuntingYard(infix string) ([]string, error) {
 	for i := 0; i < len(infix); i++ {
 		t := string(infix[i])
 		if isOp(t) {
-			if len(buf) > 0 {
-				output = append(output, string(buf))
-				buf = buf[:0]
-			}
+			buf = flushBuf(buf, &output, &stack)
 			if len(stack) == 0 {
 				stack = append(stack, t)
 			} else {
@@ -116,16 +128,10 @@ func shuntingYard(infix string) ([]string, error) {
 				stack = append(stack, t)
 			}
 		} else if t == "(" {
-			if len(buf) > 0 {
-				output = append(output, string(buf))
-				buf = buf[:0]
-			}
+			buf = flushBuf(buf, &output, &stack)
 			stack = append(stack, t)
 		} else if t == ")" {
-			if len(buf) > 0 {
-				output = append(output, string(buf))
-				buf = buf[:0]
-			}
+			buf = flushBuf(buf, &output, &stack)
 			for i := len(stack) - 1; i >= 0; i-- {
 				if stack[i] == "(" {
 					stack = stack[:i]
@@ -143,10 +149,7 @@ func shuntingYard(infix string) ([]string, error) {
 			buf = append(buf, infix[i])
 		}
 	}
-	if len(buf) > 0 {
-		output = append(output, string(buf))
-		buf = buf[:0]
-	}
+	buf = flushBuf(buf, &output, &stack)
 	for i := len(stack) - 1; i >= 0; i-- {
 		output = append(output, stack[i])
 	}
@@ -171,6 +174,16 @@ func isOp(s string) bool {
 	operators := []string{"*", "/", "+", "-", "^"}
 	for _, op := range operators {
 		if s == op {
+			return true
+		}
+	}
+	return false
+}
+
+func isFunc(s string) bool {
+	funcs := []string{"sin", "cos", "tan"}
+	for _, f := range funcs {
+		if s == f {
 			return true
 		}
 	}

@@ -24,6 +24,18 @@ func simpleEvalFloat(a, b float64, op string) float64 {
 	return ans
 }
 
+func funcEvalFloat(a float64, f string) float64 {
+	var ans float64
+	if f == "sin" {
+		ans = math.Sin(a)
+	} else if f == "cos" {
+		ans = math.Cos(a)
+	} else if f == "tan" {
+		ans = math.Tan(a)
+	}
+	return ans
+}
+
 // evalPostfixFloat evaluates a postfix (Reverse Polish Notation)
 // expression as a string array of floats and operators.
 func evalPostfixFloat(postfix []string) (float64, error) {
@@ -34,6 +46,10 @@ func evalPostfixFloat(postfix []string) (float64, error) {
 			b := stack[len(stack)-1]
 			retVal := simpleEvalFloat(a, b, val)
 			stack = append(stack[0:len(stack)-2], retVal)
+		} else if isFunc(val) {
+			a := stack[len(stack)-1]
+			retVal := funcEvalFloat(a, val)
+			stack = append(stack[0:len(stack)-1], retVal)
 		} else {
 			num, err := strconv.ParseFloat(val, 64)
 			if err != nil {
