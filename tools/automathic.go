@@ -16,10 +16,25 @@ var CONSTS = map[string]float64{
 
 // map function keywords to library calls
 var FUNCS = map[string]func(float64) float64{
-	"sin":  math.Sin,
-	"cos":  math.Cos,
-	"tan":  math.Tan,
-	"sqrt": math.Sqrt,
+	"sqrt":    math.Sqrt,
+	"cbrt":    math.Cbrt,
+	"abs":     math.Abs,
+	"sin":     math.Sin,
+	"cos":     math.Cos,
+	"tan":     math.Tan,
+	"arcsin":  math.Asin,
+	"arccos":  math.Acos,
+	"arctan":  math.Atan,
+	"sinh":    math.Sinh,
+	"cosh":    math.Cosh,
+	"tanh":    math.Tanh,
+	"arcsinh": math.Asinh,
+	"arccosh": math.Acosh,
+	"arctanh": math.Atanh,
+	"ln":      math.Log,
+	"log":     math.Log,
+	"log10":   math.Log10,
+	"log2":    math.Log2,
 }
 
 // map operators to their precedence
