@@ -48,8 +48,11 @@ func evalPostfixFloat(postfix []string) (float64, error) {
 			stack = append(stack[0:len(stack)-2], retVal)
 		} else if isFunc(val) {
 			a := stack[len(stack)-1]
-			retVal := funcEvalFloat(a, val)
+			retVal := FUNCS[val](a)
 			stack = append(stack[0:len(stack)-1], retVal)
+		} else if isConst(val) {
+			num := CONSTS[val]
+			stack = append(stack, num)
 		} else {
 			num, err := strconv.ParseFloat(val, 64)
 			if err != nil {

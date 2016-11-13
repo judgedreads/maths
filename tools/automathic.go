@@ -8,11 +8,13 @@ import (
 	"strings"
 )
 
+// map contant keywords to library constants
 var CONSTS = map[string]float64{
 	"pi": math.Pi,
 	"e":  math.E,
 }
 
+// map function keywords to library calls
 var FUNCS = map[string]func(float64) float64{
 	"sin":  math.Sin,
 	"cos":  math.Cos,
@@ -20,6 +22,7 @@ var FUNCS = map[string]func(float64) float64{
 	"sqrt": math.Sqrt,
 }
 
+// map operators to their precedence
 var OPS = map[string]int{
 	"+": 2,
 	"-": 2,
@@ -203,4 +206,9 @@ func isFunc(s string) bool {
 		}
 	}
 	return false
+}
+
+func isConst(s string) bool {
+	_, exists := CONSTS[s]
+	return exists
 }
