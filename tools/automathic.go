@@ -94,7 +94,7 @@ func flushBuf(b []byte, output, stack *[]string) []byte {
 	if len(b) == 0 {
 		return b
 	}
-	s := string(b)
+	s := strings.ToLower(string(b))
 	if isFunc(s) {
 		*stack = append(*stack, s)
 	} else {
@@ -188,24 +188,14 @@ func precedence(o1, o2 string) int {
 	return OPS[o1] - OPS[o2]
 }
 
-// isOp checks to see if a string is one the mathematical operators:
-// "+,-,*,/,^"
 func isOp(s string) bool {
-	for op, _ := range OPS {
-		if s == op {
-			return true
-		}
-	}
-	return false
+	_, exists := OPS[s]
+	return exists
 }
 
 func isFunc(s string) bool {
-	for k, _ := range FUNCS {
-		if s == k {
-			return true
-		}
-	}
-	return false
+	_, exists := FUNCS[s]
+	return exists
 }
 
 func isConst(s string) bool {
