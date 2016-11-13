@@ -142,13 +142,14 @@ func shuntingYard(infix string) ([]string, error) {
 		return output, err
 	}
 
+	// TODO: abstract the bigger cases
 	// parse infix expression
 	for i := 0; i < len(infix); i++ {
 		t := string(infix[i])
-		if t == " " {
+		switch {
+		case t == " ":
 			continue
-		}
-		if isOp(t) {
+		case isOp(t):
 			buf = flushBuf(buf, &output, &stack)
 			if len(stack) == 0 {
 				stack = append(stack, t)
@@ -168,10 +169,10 @@ func shuntingYard(infix string) ([]string, error) {
 				}
 				stack = append(stack, t)
 			}
-		} else if t == "(" {
+		case t == "(":
 			buf = flushBuf(buf, &output, &stack)
 			stack = append(stack, t)
-		} else if t == ")" {
+		case t == ")":
 			buf = flushBuf(buf, &output, &stack)
 			for i := len(stack) - 1; i >= 0; i-- {
 				if stack[i] == "(" {
@@ -186,7 +187,7 @@ func shuntingYard(infix string) ([]string, error) {
 					stack = stack[:i]
 				}
 			}
-		} else {
+		default:
 			buf = append(buf, infix[i])
 		}
 	}

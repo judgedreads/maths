@@ -9,31 +9,20 @@ import (
 // simpleEvalFloat calculates the result of two floats and one of the
 // following mathematical operators: "+,-,*,/,^".
 func simpleEvalFloat(a, b float64, op string) float64 {
-	var ans float64
-	if op == "+" {
-		ans = a + b
-	} else if op == "-" {
-		ans = a - b
-	} else if op == "/" {
-		ans = a / b
-	} else if op == "*" {
-		ans = a * b
-	} else if op == "^" {
-		ans = math.Pow(a, b)
+	switch op {
+	case "+":
+		return a + b
+	case "-":
+		return a - b
+	case "/":
+		return a / b
+	case "*":
+		return a * b
+	case "^":
+		return math.Pow(a, b)
+	default:
+		return 0.0
 	}
-	return ans
-}
-
-func funcEvalFloat(a float64, f string) float64 {
-	var ans float64
-	if f == "sin" {
-		ans = math.Sin(a)
-	} else if f == "cos" {
-		ans = math.Cos(a)
-	} else if f == "tan" {
-		ans = math.Tan(a)
-	}
-	return ans
 }
 
 // evalPostfixFloat evaluates a postfix (Reverse Polish Notation)
@@ -41,19 +30,20 @@ func funcEvalFloat(a float64, f string) float64 {
 func evalPostfixFloat(postfix []string) (float64, error) {
 	var stack []float64
 	for _, val := range postfix {
-		if isOp(val) {
+		switch {
+		case isOp(val):
 			a := stack[len(stack)-2]
 			b := stack[len(stack)-1]
 			retVal := simpleEvalFloat(a, b, val)
 			stack = append(stack[0:len(stack)-2], retVal)
-		} else if isFunc(val) {
+		case isFunc(val):
 			a := stack[len(stack)-1]
 			retVal := FUNCS[val](a)
 			stack = append(stack[0:len(stack)-1], retVal)
-		} else if isConst(val) {
+		case isConst(val):
 			num := CONSTS[val]
 			stack = append(stack, num)
-		} else {
+		default:
 			num, err := strconv.ParseFloat(val, 64)
 			if err != nil {
 				return 0.0, err
