@@ -3,11 +3,31 @@ package main
 import (
 	"flag"
 	"fmt"
+	"math"
 	"os"
 	"strings"
 )
 
-// TODO: allow functions in expression
+var CONSTS = map[string]float64{
+	"pi": math.Pi,
+	"e":  math.E,
+}
+
+var FUNCS = map[string]func(float64) float64{
+	"sin":  math.Sin,
+	"cos":  math.Cos,
+	"tan":  math.Tan,
+	"sqrt": math.Sqrt,
+}
+
+var OPS = map[string]int{
+	"+": 2,
+	"-": 2,
+	"*": 3,
+	"/": 3,
+	"^": 4,
+}
+
 func main() {
 	expr := flag.String("expr", "", "expression to evaluate")
 	vars := flag.String("vars", "", "comma separated list of var definitions, e.g. x=1,y=2")
@@ -162,20 +182,13 @@ func shuntingYard(infix string) ([]string, error) {
 // precedence compares the precedence of the mathematical operators:
 // "+,-,*,/,^"
 func precedence(o1, o2 string) int {
-	m := make(map[string]int)
-	m["+"] = 2
-	m["-"] = 2
-	m["*"] = 3
-	m["/"] = 3
-	m["^"] = 4
-	return m[o1] - m[o2]
+	return OPS[o1] - OPS[o2]
 }
 
 // isOp checks to see if a string is one the mathematical operators:
 // "+,-,*,/,^"
 func isOp(s string) bool {
-	operators := []string{"*", "/", "+", "-", "^"}
-	for _, op := range operators {
+	for op, _ := range OPS {
 		if s == op {
 			return true
 		}
@@ -184,9 +197,8 @@ func isOp(s string) bool {
 }
 
 func isFunc(s string) bool {
-	funcs := []string{"sin", "cos", "tan"}
-	for _, f := range funcs {
-		if s == f {
+	for k, _ := range FUNCS {
+		if s == k {
 			return true
 		}
 	}
