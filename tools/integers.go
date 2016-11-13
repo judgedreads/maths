@@ -8,19 +8,20 @@ import (
 // simpleEvalInt calculates the result of two ints and one of the
 // following mathematical operators: "+,-,*,/,^".
 func simpleEvalInt(a, b int, op string) int {
-	var ans int
-	if op == "+" {
-		ans = a + b
-	} else if op == "-" {
-		ans = a - b
-	} else if op == "/" {
-		ans = a / b
-	} else if op == "*" {
-		ans = a * b
-	} else if op == "^" {
-		ans = power(a, b)
+	switch op {
+	case "+":
+		return a + b
+	case "-":
+		return a - b
+	case "/":
+		return a / b
+	case "*":
+		return a * b
+	case "^":
+		return power(a, b)
+	default:
+		return 0
 	}
-	return ans
 }
 
 // evalPostfixInt evaluates a postfix (Reverse Polish Notation)
@@ -36,14 +37,14 @@ func evalPostfixInt(postfix []string) (int, error) {
 		} else {
 			num, err := strconv.Atoi(val)
 			if err != nil {
-				return 0.0, nil
+				return 0, nil
 			}
 			stack = append(stack, num)
 		}
 	}
 	if len(stack) != 1 {
 		err := fmt.Errorf("error calculating postfix")
-		return 0.0, err
+		return 0, err
 	}
 	return stack[0], nil
 }
