@@ -107,6 +107,9 @@ func shuntingYard(infix string) ([]string, error) {
 	// parse infix expression
 	for i := 0; i < len(infix); i++ {
 		t := string(infix[i])
+		if t == " " {
+			continue
+		}
 		if isOp(t) {
 			buf = flushBuf(buf, &output, &stack)
 			if len(stack) == 0 {
