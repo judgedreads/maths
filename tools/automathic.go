@@ -47,23 +47,22 @@ var OPS = map[string]int{
 }
 
 func main() {
-	expr := flag.String("expr", "", "expression to evaluate")
 	vars := flag.String("vars", "", "comma separated list of var definitions, e.g. x=1,y=2")
 	integers := flag.Bool("ints", false, "use integers, not floats, in calculations")
 	flag.Parse()
-	if *expr == "" {
+	expr := flag.Arg(0)
+	if expr == "" {
 		err := fmt.Errorf("need an expression to evaluate")
 		die(err)
 	}
 	if *vars != "" {
 		v := strings.Split(*vars, ",")
-		subbed, err := subVars(*expr, v)
-		expr = &subbed
+		expr, err := subVars(expr, v)
 		if err != nil {
 			die(err)
 		}
 	}
-	shunt, err := shuntingYard(*expr)
+	shunt, err := shuntingYard(expr)
 	if err != nil {
 		die(err)
 	}
@@ -72,13 +71,13 @@ func main() {
 		if err != nil {
 			die(err)
 		}
-		fmt.Printf("%s = \n\t%d\n", *expr, ans)
+		fmt.Printf("%s = \n\t%d\n", expr, ans)
 	} else {
 		ans, err := evalPostfixFloat(shunt)
 		if err != nil {
 			die(err)
 		}
-		fmt.Printf("%s = \n\t%f\n", *expr, ans)
+		fmt.Printf("%s = \n\t%f\n", expr, ans)
 	}
 }
 
