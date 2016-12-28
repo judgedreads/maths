@@ -1,0 +1,90 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage{mystyle}
+
+\begin{document}
+
+\begin{defn}[Echelon Form]
+	A matrix is in Echelon form if:
+	\begin{enumerate}
+		\item all non-zero rows come before zero rows
+		\item below each pivot is a column of zeros
+		\item each pivot is to the right of the previous pivot
+	\end{enumerate}
+
+	If each pivot is $1$ then the matrix is in row echelon form and if
+	there is a column of zeros above each pivot, the matrix is in reduced
+	row echelon form (RRE).
+\end{defn}
+
+\begin{defn}[Rank]
+	Let $A$ be an $n \times m$ matrix. Its rank is equal to the number of
+	non-zero rows in its echelon form. This is denoted by $p(A)$.
+\end{defn}
+
+\begin{defn}[Subspace]
+	Let $U \subset \RR^n$. $U$ is a subspace if:
+	\begin{enumerate}
+		\item $\mathbf{0} \in U$
+		\item $U$ is closed under addition and scalar multiplication
+	\end{enumerate}
+\end{defn}
+
+\begin{defn}[Vector Space]
+	$V$ is a vector space of a field $\FF$ if:
+	\begin{enumerate}
+		\item addition is commutative and associative
+		\item neutral and inverse additive elements exist
+		\item scalar multiplication is commutative and associative
+		\item $1$ is the neutral scalar
+		\item $(a+b)\mathbf{d} = a\mathbf{d} + b\mathbf{d} \quad \forall a,b \in \FF, \mathbf{d} \in V$
+		\item $(\mathbf{a} + \mathbf{b})d = \mathbf{a}d + \mathbf{b}d \quad \forall \mathbf{a},\mathbf{b} \in V, d \in \FF$
+	\end{enumerate}
+\end{defn}
+
+\begin{defn}[Null Space]
+	If $A \in M_{m \times n}(\RR)$, the null space is defined as:
+	\[
+		N(A) = \{ \mathbf{x} \in \RR^n | A\mathbf{x} = \mathbf{0} \}
+	\]
+\end{defn}
+
+\begin{prop}
+	If $A \in M_{m \times n}(\RR)$, the null space $N(A)$ is a
+	subspace of $\RR^n$.
+\end{prop}
+
+\begin{proof}
+	It is clear that $\mathbf{0} \in N(A)$. It remains to be shown
+	that addition and scalar multiplication are closed.
+
+	Let $x,y \in \RR^n$. We know that $\RR^n$ is a vector space,
+	hence $A(x+y) = Ax + Ay = \mathbf{0}$.
+
+	Let $x \in \RR^n, \, a \in \RR$. $A(ax) = a(Ax) = a\mathbf{0} = \mathbf{0}$.
+\end{proof}
+
+\begin{defn}[Image Space]
+	$Im A = \{ \mathbf{y} \in \RR^m | \mathbf{y} = A\mathbf{x}, \mathbf{x} \in \RR^n \}$
+\end{defn}
+
+\begin{prop}
+	$Im A$ is a subspace of $\RR^m$.
+\end{prop}
+
+\begin{proof}
+	We know that $\mathbf{0} \in \RR^n$ hence $A\mathbf{0} = 0 \in Im A$.
+
+	Let $y_1 = Ax_1, y_2 = Ax_2 \in \RR^m$.
+	\[
+		y_1 + y_2 = Ax_1 + Ax_2 = A(x_1 + x_2)
+		x_1 + x_2 \in \RR^n \Rightarrow y_1 + y_2 \in Im A
+	\]
+
+	Let $k \in \RR, y \in Im A$.
+	\[
+		ky = kAx = Akx
+		kx \in \RR^n \Rightarrow ky \in Im A
+	\]
+\end{proof}
+
+\end{document}
