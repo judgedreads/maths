@@ -44,7 +44,7 @@
 \begin{defn}[Null Space]
 	If $A \in M_{m \times n}(\RR)$, the null space is defined as:
 	\[
-		N(A) = \{ \bm{x} \in \RR^n | A\bm{x} = \bm{0} \}
+		N(A) = \{ \bm{x} \in \RR^n \mid A\bm{x} = \bm{0} \}
 	\]
 \end{defn}
 
@@ -64,7 +64,7 @@
 \end{proof}
 
 \begin{defn}[Image Space]
-	$Im A = \{ \bm{y} \in \RR^m | \bm{y} = A\bm{x}, \bm{x} \in \RR^n \}$
+	$Im A = \{ \bm{y} \in \RR^m \mid \bm{y} = A\bm{x}, \bm{x} \in \RR^n \}$
 \end{defn}
 
 \begin{prop}
@@ -204,7 +204,7 @@
 Another example of a vector space is the space of polynomials over a field $\FF$:
 \[
 	\FF[x] =
-	\{a_0 + a_1 x + \cdots + a_n x^2 \, | \, a_i \in \FF, n \in \NN_0\}
+	\{a_0 + a_1 x + \cdots + a_n x^2 \mid a_i \in \FF, n \in \NN_0\}
 \]
 e.g. $\RR[x]$ is a vs over $\RR$.
 Addition and scalar multiplication work as expected.
@@ -257,7 +257,7 @@ Spanning sets, linear independence, bases:
 
 \begin{prop}
 	$U = \{
-		\alpha_1 v_1 + \alpha_2 v_2 + \cdots + \alpha_r v_r \, | \,
+		\alpha_1 v_1 + \alpha_2 v_2 + \cdots + \alpha_r v_r \mid
 		\alpha_i \in \RR, \, v_i \in V
 	\}$ is a subspace.
 \end{prop}
@@ -293,7 +293,7 @@ Spanning sets, linear independence, bases:
 	$\{v_1, \ldots, v_r\} \subset V$ is a spanning set for $W$ if
 	\[
 		W =
-		\{\alpha_1 v_1 + \cdots + \alpha_r v_r \, | \, \alpha_i \in \RR\}
+		\{\alpha_1 v_1 + \cdots + \alpha_r v_r \mid \alpha_i \in \RR\}
 		= sp\{v_1, \ldots, v_r\}
 	\]
 	We say that $\{v_1, \ldots, v_r\}$ spans $W$.
@@ -378,7 +378,7 @@ Spanning sets, linear independence, bases:
 				b + c \\
 				a + c
 			\end{pmatrix}
-			\, | \, a,b,c \in \RR
+			\mid a,b,c \in \RR
 		\right\}
 		\subset \RR^3
 	\]
@@ -465,7 +465,7 @@ Spanning sets, linear independence, bases:
 
 \begin{defn}[Linear Independence]
 	Let $V$ be a vector space. A set of vectors
-	$\{v_1, \ldots, v_r \, | \, v_i \in V \}$
+	$\{v_1, \ldots, v_r \mid v_i \in V \}$
 	is linearly independent if
 	\[
 		\alpha_1 v_1 + \cdots + \alpha_r v_r = 0
@@ -493,6 +493,147 @@ Spanning sets, linear independence, bases:
 	A matrix equation like this can have a unique solution iff
 	$\rho(A) = r$, otherwise there would be free variables resulting
 	in a range of solutions.
+\end{proof}
+
+We now know that any matrix whose rank is equal to the number of its
+rows forms a linearly independent spanning set for a subspace of
+$\RR^n$.
+
+\begin{cor}
+	Any set of $m > n$ vectors in $\RR^n$ is linearly dependent.
+\end{cor}
+
+\begin{cor}
+	The columns of the indentity matrix $I_n$ form a linearly
+	independent spanning set of $\RR^n$.
+\end{cor}
+
+\begin{defn}[Basis]
+	A subset $B$ of a vector space $V$ is called a basis of $V$ if $B$ is linearly independent and $B$ spans $V$.
+\end{defn}
+
+\begin{rem}
+	When considering $\RR^n$ or its subsets, a basis will always be
+	finite; however a basis can be infinite, for example
+	$\{1, x, x^2, \ldots\}$ is a basis of $\RR[x]$.
+\end{rem}
+
+\begin{ex}
+	\[
+		\left\{
+			\begin{pmatrix}
+				1 \\
+				2 \\
+				3
+			\end{pmatrix}
+			,
+			\begin{pmatrix}
+				1 \\
+				-1 \\
+				0
+			\end{pmatrix}
+			,
+			\begin{pmatrix}
+				5 \\
+				4 \\
+				4
+			\end{pmatrix}
+		\right\}
+	\]
+	is a basis of $\RR^3$.
+
+	\[
+		\begin{pmatrix}
+			1 & 1  & 5 \\
+			2 & -1 & 4 \\
+			3 & 0  & 4
+		\end{pmatrix}
+		=
+		\begin{pmatrix}
+			1 & 1  & 5  \\
+			0 & -3 & -6 \\
+			0 & -3 & -11
+		\end{pmatrix}
+		=
+		\begin{pmatrix}
+			1 & 1  & 5  \\
+			0 & -3 & -6 \\
+			0 & 0  & -5
+		\end{pmatrix}
+	\]
+
+	We can see that the rank is $3$ hence this set is linearly independent.
+	\[
+		\begin{pmatrix}
+			1 & 1  & 5  \\
+			0 & -3 & -6 \\
+			0 & 0  & -5
+		\end{pmatrix}
+		=
+		\begin{pmatrix}
+			1 & 1 & 5  \\
+			0 & 1 & -2 \\
+			0 & 0 & 1
+		\end{pmatrix}
+		=
+		\begin{pmatrix}
+			1 & 0 & 0 \\
+			0 & 0 & 0 \\
+			0 & 0 & 1
+		\end{pmatrix}
+	\]
+
+	This shows that this set spans $\RR^3$ and is therefore a basis.
+\end{ex}
+
+\begin{thm}
+	Let $V$ be a vector space over $\RR$. If $U = \{v_1, \ldots,
+	v_r\}$ spans $V$ and no proper subset of $U$ spans $V$, then $U$
+	is a basis for $V$.
+\end{thm}
+
+\begin{proof}
+	We know that $U$ spans $V$ so we need only prove that $U$ is linearly independent. We will do so using the contrapositive method.
+
+	If $U$ is not linearly independent then $\exists v_i \in U$ such that
+	\[
+		v_i = \alpha_1 v_1 + \cdots + \alpha_{i-1} v_{i-1} +
+		\alpha_{i+1} v_{i+1} + \cdots + \alpha_r v_r
+	\]
+	\[
+		\implies
+		W = {v_1, \ldots, v_{i-1}, v_{i+1}, \ldots, v_r}
+		\subset U
+	\]
+	spans $V$.
+
+	Therefore, if there is no such $W$, $U$ must be linearly
+	independent and hence a basis.
+\end{proof}
+
+\begin{thm}
+	Let $V$ be a vector space over $\RR$. If $U = \{v_1, \ldots, v_r\}$
+	is a linearly independent subset of $V$ and no proper, linearly
+	independent  subset $W$ of $V$, where $W$ contains $U$, then $U$
+	is a basis of $V$.
+\end{thm}
+
+\begin{proof}
+	We know $U$ is linearly independent so we need only show that it
+	spans $V$.
+
+	Let $v \in V \setminus U$. According to our assumption that no
+	linearly independent subset exists between $U$ and $V$, this
+	means that $\{v_1, \ldots, v_r, v\}$ is  not linearly
+	independent; hence any element in this set can be expressed as a
+	linear combination of the rest.
+
+	\[
+		\implies
+		v = \sum_{i=1}^r \alpha_i v_i \quad \forall v \in V
+	\]
+
+	Therefore, $U$ spans $V$ and $U$ is a basis for $V$.
 \end{proof}
 
 \end{document}
