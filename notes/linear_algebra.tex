@@ -24,7 +24,7 @@
 \begin{defn}[Subspace]
 	Let $U \subset \RR^n$. $U$ is a subspace if:
 	\begin{enumerate}
-		\item $\mathbf{0} \in U$
+		\item $\bm{0} \in U$
 		\item $U$ is closed under addition and scalar multiplication
 	\end{enumerate}
 \end{defn}
@@ -36,15 +36,15 @@
 		\item neutral and inverse additive elements exist
 		\item scalar multiplication is commutative and associative
 		\item $1$ is the neutral scalar
-		\item $(a+b)\mathbf{d} = a\mathbf{d} + b\mathbf{d} \quad \forall a,b \in \FF, \mathbf{d} \in V$
-		\item $(\mathbf{a} + \mathbf{b})d = \mathbf{a}d + \mathbf{b}d \quad \forall \mathbf{a},\mathbf{b} \in V, d \in \FF$
+		\item $(a+b)\bm{d} = a\bm{d} + b\bm{d} \quad \forall a,b \in \FF, \bm{d} \in V$
+		\item $(\bm{a} + \bm{b})d = \bm{a}d + \bm{b}d \quad \forall \bm{a},\bm{b} \in V, d \in \FF$
 	\end{enumerate}
 \end{defn}
 
 \begin{defn}[Null Space]
 	If $A \in M_{m \times n}(\RR)$, the null space is defined as:
 	\[
-		N(A) = \{ \mathbf{x} \in \RR^n | A\mathbf{x} = \mathbf{0} \}
+		N(A) = \{ \bm{x} \in \RR^n | A\bm{x} = \bm{0} \}
 	\]
 \end{defn}
 
@@ -54,17 +54,17 @@
 \end{prop}
 
 \begin{proof}
-	It is clear that $\mathbf{0} \in N(A)$. It remains to be shown
+	It is clear that $\bm{0} \in N(A)$. It remains to be shown
 	that addition and scalar multiplication are closed.
 
 	Let $x,y \in \RR^n$. We know that $\RR^n$ is a vector space,
-	hence $A(x+y) = Ax + Ay = \mathbf{0}$.
+	hence $A(x+y) = Ax + Ay = \bm{0}$.
 
-	Let $x \in \RR^n, \, a \in \RR$. $A(ax) = a(Ax) = a\mathbf{0} = \mathbf{0}$.
+	Let $x \in \RR^n, \, a \in \RR$. $A(ax) = a(Ax) = a\bm{0} = \bm{0}$.
 \end{proof}
 
 \begin{defn}[Image Space]
-	$Im A = \{ \mathbf{y} \in \RR^m | \mathbf{y} = A\mathbf{x}, \mathbf{x} \in \RR^n \}$
+	$Im A = \{ \bm{y} \in \RR^m | \bm{y} = A\bm{x}, \bm{x} \in \RR^n \}$
 \end{defn}
 
 \begin{prop}
@@ -72,19 +72,427 @@
 \end{prop}
 
 \begin{proof}
-	We know that $\mathbf{0} \in \RR^n$ hence $A\mathbf{0} = 0 \in Im A$.
+	We know that $\bm{0} \in \RR^n$ hence $A\bm{0} = 0 \in Im A$.
 
 	Let $y_1 = Ax_1, y_2 = Ax_2 \in \RR^m$.
 	\[
 		y_1 + y_2 = Ax_1 + Ax_2 = A(x_1 + x_2)
+	\]
+	\[
 		x_1 + x_2 \in \RR^n \Rightarrow y_1 + y_2 \in Im A
 	\]
 
 	Let $k \in \RR, y \in Im A$.
 	\[
 		ky = kAx = Akx
+	\]
+	\[
 		kx \in \RR^n \Rightarrow ky \in Im A
 	\]
+\end{proof}
+
+\begin{ex}
+	Find $N(A)$ and $Im(A)$ where
+	\[
+		A =
+		\begin{pmatrix}
+			1  & 3 & -2 \\
+			-2 & 4 & 4
+		\end{pmatrix}
+	\]
+
+	First we find the RRE of $A$:
+	\[
+		\begin{pmatrix}
+			1  & 3 & -2 \\
+			-2 & 4 & 4
+		\end{pmatrix}
+		=
+		\begin{pmatrix}
+			1 & 3  & -2 \\
+			0 & 10 & 0
+		\end{pmatrix}
+		=
+		\begin{pmatrix}
+			1 & 3 & -2 \\
+			0 & 1 & 0
+		\end{pmatrix}
+		=
+		\begin{pmatrix}
+			1 & 0 & -2 \\
+			0 & 1 & 0
+		\end{pmatrix}
+	\]
+
+	$N(A)$:
+	\[
+		\begin{pmatrix}
+			1 & 0 & -2 \\
+			0 & 1 & 0
+		\end{pmatrix}
+		\begin{pmatrix}
+			x_1 \\
+			x_2 \\
+			x_3
+		\end{pmatrix}
+		=
+		\begin{pmatrix}
+			0 \\
+			0 \\
+			0
+		\end{pmatrix}
+	\]
+	\[
+		\Rightarrow x_2 = 0, \quad x_1 = 2x_3
+	\]
+	\[
+		\Rightarrow N(A) = k
+		\begin{pmatrix}
+			2 \\
+			0 \\
+			1
+		\end{pmatrix}
+		, k \in \RR
+	\]
+
+	$Im(A)$:
+	\[
+		\begin{pmatrix}
+			y_1 \\
+			y_2 \\
+			y_3
+		\end{pmatrix}
+		=
+		\begin{pmatrix}
+			1  & 3 & -2 \\
+			-2 & 4 & 4
+		\end{pmatrix}
+		\begin{pmatrix}
+			x_1 \\
+			x_2 \\
+			x_3
+		\end{pmatrix}
+		=
+		\begin{pmatrix}
+			x_1   + 3x_2 - 2x_3  \\
+			-2x_1 + 4x_2 + 4x_3
+		\end{pmatrix}
+	\]
+	\[
+		= x_1
+		\begin{pmatrix}
+			1 \\
+			-2
+		\end{pmatrix}
+		+ x_2
+		\begin{pmatrix}
+			3 \\
+			4
+		\end{pmatrix}
+		+ x_3
+		\begin{pmatrix}
+			-2 \\
+			4
+		\end{pmatrix}
+	\]
+
+	Note that the vectors in this expression are simply the columns of $A$, in fact in general:
+	\[ Im(A) = \{x_1a_{i1} + \cdots + x_{in}\} \]
+	Hence the image space is sometimes referred to as the column space.
+\end{ex}
+
+Another example of a vector space is the space of polynomials over a field $\FF$:
+\[
+	\FF[x] =
+	\{a_0 + a_1 x + \cdots + a_n x^2 \, | \, a_i \in \FF, n \in \NN_0\}
+\]
+e.g. $\RR[x]$ is a vs over $\RR$.
+Addition and scalar multiplication work as expected.
+
+We can also define a vs on a set of funtions:
+\[
+	V = \{f:[0,1] \to \RR\}
+\]
+Addition:
+\[
+	(g+f)(x) = g(x) + f(x)
+\]
+Scalar multiplication:
+\[
+	(\alpha f)(x) = \alpha (f(x)), \alpha \in \RR
+\]
+
+% TODO: prove these examples ^^.
+
+\begin{defn}[Transpose]
+	If $A = a(i,j) \in M_{m \times n}(\RR)$, then its transpose is
+	\[ A^T = a(j,i) \]
+	i.e its columns are swapped with its rows.
+\end{defn}
+\begin{defn}[Symmetric]
+	A matrix $A \in M_{n}(\RR)$ is called symmetric iff
+	\[ A^T = A. \]
+\end{defn}
+
+Properties of $A^T$:
+\[
+	{(A^T)}^T = A
+\]
+\[
+	{(A+B)}^T = A^T + B^T
+\]
+\[
+	{(AC)}^T = C^T A^T
+\]
+
+Spanning sets, linear independence, bases:
+
+\begin{defn}[Linear Combination]
+	Let $V$ be a vector space over $\RR$. A linear combination of vectors in $V$ is given as:
+	\[
+		\alpha_1 v_1 + \alpha_2 v_2 + \cdots + \alpha_r v_r, \quad
+		\alpha_i \in \RR, \, v_i \in V
+	\]
+\end{defn}
+
+\begin{prop}
+	$U = \{
+		\alpha_1 v_1 + \alpha_2 v_2 + \cdots + \alpha_r v_r \, | \,
+		\alpha_i \in \RR, \, v_i \in V
+	\}$ is a subspace.
+\end{prop}
+
+\begin{proof}
+	\[
+		\alpha_i = 0 \, \forall i \Rightarrow 0 + \cdots + 0 = 0
+	\]
+	\[
+		\Rightarrow \bm{0} \in U
+	\]
+	\[
+		a = \sum_{i=0}^r \alpha_i v_i \quad
+		b = \sum_{i=0}^r \beta_i v_i \\
+	\]
+	\begin{align*}
+		\Rightarrow a + b &= \sum (\alpha_i v_i + \beta_i v_i) \\
+		&= \sum (\alpha_i + \beta_i) v_i \in U
+	\end{align*}
+
+	\[
+		a = \sum \alpha_i v_i \quad \lambda \in \RR
+	\]
+	\[
+		\lambda a = \sum \lambda \alpha_i v_i \quad
+		\lambda \alpha_i \in \RR \, \forall i
+		\Rightarrow \lambda a \in U
+	\]
+\end{proof}
+
+\begin{defn}[Spanning Set]
+	Let $V$ be a vector space and $W$ be a subspace. A set of vectors
+	$\{v_1, \ldots, v_r\} \subset V$ is a spanning set for $W$ if
+	\[
+		W =
+		\{\alpha_1 v_1 + \cdots + \alpha_r v_r \, | \, \alpha_i \in \RR\}
+		= sp\{v_1, \ldots, v_r\}
+	\]
+	We say that $\{v_1, \ldots, v_r\}$ spans $W$.
+\end{defn}
+
+\begin{ex}
+	If $A = \begin{pmatrix}
+		1  & 3 & -2 \\
+		-2 & 4 & 4
+	\end{pmatrix}$ we know that
+	\[
+		Im(A) = x_1
+		\begin{pmatrix}
+			1 \\
+			-2
+		\end{pmatrix}
+		+ x_2
+		\begin{pmatrix}
+			3 \\
+			4
+		\end{pmatrix}
+		+ x_3
+		\begin{pmatrix}
+			-2 \\
+			4
+		\end{pmatrix}
+	\]
+
+	We can also say that
+	\[
+		Im(A) = sp\left\{
+			\begin{pmatrix}
+				1 \\
+				-2
+			\end{pmatrix}
+			,
+			\begin{pmatrix}
+				3 \\
+				4
+			\end{pmatrix}
+			,
+			\begin{pmatrix}
+				-2 \\
+				4
+			\end{pmatrix}
+		\right\}
+	\]
+	since every element in $Im(A)$ is a linear combination of these vectors.
+\end{ex}
+
+\begin{ex}
+	\[
+		\left\{
+			\begin{pmatrix}
+				1 \\
+				0 \\
+				0
+			\end{pmatrix}
+			,
+			\begin{pmatrix}
+				0 \\
+				1 \\
+				0
+			\end{pmatrix}
+			,
+			\begin{pmatrix}
+				0 \\
+				0 \\
+				1
+			\end{pmatrix}
+		\right\}
+	\]
+	spans $\RR^3$.
+\end{ex}
+
+\begin{ex}
+	Let
+	\[
+		W = \left\{
+			\begin{pmatrix}
+				a + b + 2c \\
+				b + c \\
+				a + c
+			\end{pmatrix}
+			\, | \, a,b,c \in \RR
+		\right\}
+		\subset \RR^3
+	\]
+	then
+	\[
+		w = a
+		\begin{pmatrix}
+			1 \\
+			0 \\
+			1
+		\end{pmatrix}
+		+ b
+		\begin{pmatrix}
+			1 \\
+			1 \\
+			0
+		\end{pmatrix}
+		+ c
+		\begin{pmatrix}
+			2 \\
+			1 \\
+			1
+		\end{pmatrix}
+		\forall w \in W
+	\]
+	\[
+		\Rightarrow W = sp\left\{
+			\begin{pmatrix}
+				1 \\
+				0 \\
+				1
+			\end{pmatrix}
+			,
+			\begin{pmatrix}
+				1 \\
+				1 \\
+				0
+			\end{pmatrix}
+			,
+			\begin{pmatrix}
+				2 \\
+				1 \\
+				1
+			\end{pmatrix}
+		\right\}
+	\]
+
+	Also, since
+	\[
+		\begin{pmatrix}
+			2 \\
+			1 \\
+			1
+		\end{pmatrix}
+		=
+		\begin{pmatrix}
+			1 \\
+			0 \\
+			1
+		\end{pmatrix}
+		+
+		\begin{pmatrix}
+			1 \\
+			1 \\
+			0
+		\end{pmatrix},
+	\]
+	\[
+		W = sp\left\{
+			\begin{pmatrix}
+				1 \\
+				0 \\
+				1
+			\end{pmatrix}
+			,
+			\begin{pmatrix}
+				1 \\
+				1 \\
+				0
+			\end{pmatrix}
+		\right\}
+	\]
+\end{ex}
+
+\begin{defn}[Linear Independence]
+	Let $V$ be a vector space. A set of vectors
+	$\{v_1, \ldots, v_r \, | \, v_i \in V \}$
+	is linearly independent if
+	\[
+		\alpha_1 v_1 + \cdots + \alpha_r v_r = 0
+		\implies \alpha_1 = \cdots = \alpha_r = 0.
+	\]
+\end{defn}
+
+\begin{thm}
+	Let $v_1, \ldots, v_r \in \RR^n$ and $A$ be the matrix whose
+	columns correspond to the vectors $v_i$, then the set
+	$\{v_1, \ldots, v_r\}$ is linearly independent iff
+	$A\bm{x} = 0$ has the unique solution $x = 0$ iff $\rho(A) = r$.
+\end{thm}
+
+\begin{proof}
+	By definition of linear independence,
+	\[
+		x_1 v_1 + \cdots + x_r v_r = 0
+		\iff
+		x_i = 0 \, \forall i
+	\]
+	This is clearly equivalent to saying that $\bm x$ is the
+	only solution to $A\bm x = 0$.
+
+	A matrix equation like this can have a unique solution iff
+	$\rho(A) = r$, otherwise there would be free variables resulting
+	in a range of solutions.
 \end{proof}
 
 \end{document}
