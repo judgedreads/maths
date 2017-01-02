@@ -636,4 +636,55 @@ $\RR^n$.
 	Therefore, $U$ spans $V$ and $U$ is a basis for $V$.
 \end{proof}
 
+\begin{lemma}[Exchange (Steinitz)]
+	Let $V$ be a vector space. Let $S = \{a_1, \ldots, \_s\}$ be a
+	basis for a subspace $U \subset V$ and let $B = \{b_1, \ldots,
+	b_r\}$ be a linearly independent subset of $U$. The $r \leq s$
+	and there exists a set $S_r$ containing $B$ and some elements
+	from $S$ such that $U$ is spanned by $S_r$.
+\end{lemma}
+
+%TODO: be consistent with sp and span, declare them as operators:
+%\DeclareMathOperator\span{span}
+\begin{proof}
+	\[
+		b_1 \in U = sp(S)
+		\implies b_1 = \sum_{i=1}^s \alpha_i a_i,
+	\]
+	where not all $a_i = 0$ (else $b_1 = 0$).
+	\[
+		\implies a_1 = \alpha_1^{-1}
+		( b_1 - \alpha_2 a_2 - \cdots - \alpha_s a_s )
+	\]
+
+	Assume we have replaced $(a_1, \ldots, a_k)$ with
+	$(b_1, \ldots, b_k)$ in this manner, so that
+	$U$ is spanned by $\{ b_1, \ldots, b_k, a_{k+1}, \ldots, a_s \}$.
+
+	Exchange $b_{k+1}$:
+	\[ b_{k+1} \in U \]
+	\[
+		\implies b_{k+1} =
+		\beta_1 b_1 + \cdots + \beta_k b_k
+		+ \alpha_{k+1} a_{k+1} + \cdots + \alpha_s a_s
+	\]
+	again, not all coefficients are zero.
+
+	At least one $\alpha_i \neq 0$ else $b_{k+1}$ would be a linear
+	combination of $\{ b_1, \ldots, b_k \}$.
+
+	\[
+		\implies \alpha_{k+1} = \alpha_{k+1}^{-1}
+		(
+			b_{k+1} - \beta_1 b_1 - \cdots - \beta_k b_k
+			- \alpha_{k+2} a_{k+2} - \cdots - \alpha_s a_s
+		)
+	\]
+
+	So for all $1 \leq k \leq r$ we can replace $a_k$ with $b_k$, giving:
+	\[
+		U = span \{ b_1, \ldots, b_{k+1}, a_{k+2}, \ldots, a_s \}
+	\]
+\end{proof}
+
 \end{document}
