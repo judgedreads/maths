@@ -3,6 +3,8 @@
 
 \begin{document}
 
+\section{Matrices and Vector Spaces}
+
 \begin{defn}[Echelon Form]
 	A matrix is in Echelon form if:
 	\begin{enumerate}
@@ -245,7 +247,7 @@ Properties of $A^T$:
 	{(AC)}^T = C^T A^T
 \]
 
-Spanning sets, linear independence, bases:
+\section{Spanning sets, linear independence, bases}
 
 \begin{defn}[Linear Combination]
 	Let $V$ be a vector space over $\RR$. A linear combination of vectors in $V$ is given as:
@@ -709,7 +711,7 @@ The next result follows from this.
 	independent, then $S$ must be a basis of $U$.
 \end{rem}
 
-Rank and Nullity
+\section{Rank and Nullity}
 
 \begin{defn}[Nullity]
 	The nullity of a matrix $A$ is the dimension of its null space.
@@ -784,6 +786,8 @@ the dimension of the column/image space.
 	$A$, yields $I_n$.
 \end{proof}
 
+\section{Determinants}
+
 \begin{defn}
 	The $(i,j)$-minor of $A \in M_n$ is the $(n-1)\times(n-1)$
 	matrix obtained by removing the $i^{th}$ row and $j^{th}$
@@ -799,7 +803,7 @@ the dimension of the column/image space.
 	is the $(i,j)$-cofactor.
 \end{defn}
 
-Properties of the Determinant
+\subsection{Properties of the Determinant}
 
 \begin{enumerate}
 	\item
@@ -862,6 +866,8 @@ Some futher properties can be deduced from those we have already described:
 		$\det I_n = 1$ (using 5)
 \end{itemize}
 
+\section{Eigenvalues and Eigenvectors}
+
 \begin{defn}[Eigenvalues and Eigenvectors]
 	Let $A \in M_n(\RR)$ and $\lambda \in \RR$. If $\exists x \neq
 	0$ such that $Ax = \lambda x$, then $\lambda$ is called an
@@ -901,7 +907,7 @@ Some futher properties can be deduced from those we have already described:
 	can be used to find eigenvectors from $(A - \lambda I_n)x = 0$.
 \end{defn}
 
-Linear Transformations
+\section{Linear Transformations}
 
 \begin{defn}[Linear Transformation]
 	Let $V$ and $W$ be vector spaces over $\RR$. A function $T:V \to
@@ -928,9 +934,99 @@ Linear Transformations
 \end{prop}
 
 \begin{proof}
-	\[ T(0) = T(v-v) = T(v) - T(v) = 0 \implies 0 \in \ker T \]
+	Let $v_1, v_2 \in \ker T$, then
+	\[ T(0) = T(v_1-v_1) = T(v_1) - T(v_1) = 0 \implies 0 \in \ker T \]
+	\[ T(v_1 + v_2) = T(v_1) + T(v_2) = 0 \]
+	\[ T(\alpha v_1) = \alpha T(v_1) = \alpha \cdot 0 = 0 \]
 
+	$T(v_1), T(v_2) \in \im T$
+	\[ T(0) = T(v_1 - v_1) = T(v_1) - T(v_1) = 0 \]
+	\[ v_1 + v_2 \in V \implies T(v_1) + T(v_2) = T(v_1 + v_2) \in \im T \]
+	\[ \alpha v_1 \in V \implies \alpha T(v_1) = T(\alpha v_1) \in \im T \]
 \end{proof}
 
+\begin{prop}
+	Let $T$ be a linear map. $T$ is injective $\iff \ker T = 0$.
+\end{prop}
+
+\begin{proof}
+	\begin{align*}
+		& &(T(x) = T(y) \implies x = y) \\
+		&\iff &(T(x) - T(y) = 0 \implies x - y = 0) \\
+		&\iff &(T(x-y) = 0 \implies x-y = 0) \\
+		&\iff &(T(v) = 0 \implies v = 0) \\
+		&\iff &\ker T = 0
+	\end{align*}
+\end{proof}
+
+\begin{rem}
+	It is clear that $T: V \to W$ is surjective $\iff \im T = W$.
+\end{rem}
+
+\begin{defn}[Isomorphism]
+	A linear transformation $T:V \to W$ is an isomorphism if $T$ is
+	bijective i.e.\ $\ker T = 0$ and $\im T = W$.
+\end{defn}
+
+\begin{defn}
+	Let $T:V \to W$ be a linear transformation. Let $v_1, \ldots,
+	v_n$ be a basis for $V$, then the matrix of the transformation
+	is the matrix $M_T \in M_{m \times n}$ whose columns are
+	$T(v_i)$.
+\end{defn}
+
+\begin{prop}
+	Let $T:\RR^n \to \RR^m$ be a linear transformation, then $T(x) =
+	M_T \cdot x$.
+\end{prop}
+
+\begin{proof}
+	Let $\{e_I\}$ be the stadard basis for $\RR^n$ (columns of $I_n$) and $T(e_i) = f_i$.
+	\begin{align*}
+		T(x) &= T
+		\left(
+			\begin{pmatrix}
+				x_1 \\
+				\vdots \\
+				x_n
+			\end{pmatrix}
+		\right) \\
+		&= T(x_1 e_1 + \cdots + x_n e_n) \\
+		&= x_1 T(e_1) + \cdots + x_n T(e_n) \\
+		&= x_1 f_1 + \cdots + x_n f_n \\
+		&=
+		\begin{pmatrix}
+			\uparrow   &        & \uparrow \\
+			f_1        & \cdots & f_n      \\
+			\downarrow &        & \downarrow
+		\end{pmatrix}
+		\begin{pmatrix}
+			x_1 \\
+			\vdots \\
+			x_n
+		\end{pmatrix} \\
+		&= M_T \cdot x
+	\end{align*}
+\end{proof}
+
+\begin{cor}
+	Let $T:V \to W$ be a linear transformation and $M_T$ be its
+	matrix with respect to the bases $B_V$ and $B_W$, then
+	\begin{align*}
+		\ker T & = N(M_T) \\
+		\im T  & = \im M_T
+	\end{align*}
+\end{cor}
+
+\begin{defn}[Change of basis]
+	The matrix of $id:V \to W$ with respect to the bases $B_1$ and
+	$B_2$ is called the change of basis matrix, from $B_1$ to $B_2$.
+\end{defn}
+
+\begin{defn}[Eigenvalues and Eigenvectors]
+	Let $T:V \to W$ be a linear transformation. If $\exists \lambda
+	\in \RR$ and $0 \neq v \in V$ such that $T(v) = \lambda v$, then
+	$\lambda$ is and eigenvalue and $v$ is an eigenvector.
+\end{defn}
 
 \end{document}
