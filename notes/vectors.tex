@@ -3,6 +3,8 @@
 
 \begin{document}
 
+\section{Vector Calculus}
+
 \begin{thm}[Cosine Theorem]
 	Given a triangle with vertices $A,B,C$ and respective opposing edges
 	$a,b,c$, and edge $b$ along the $x$-axis:
@@ -11,13 +13,13 @@
 
 \begin{proof}
 	\[
-	a = |\vec{BC}| = |-\vec{AC} + \vec{AB}|
-	= \left|\begin{pmatrix}-b\\0\end{pmatrix} +
-		c\begin{pmatrix}\cos\theta\\\sin\theta\end{pmatrix}\right|
+		a = |\vec{BC}| = |-\vec{AC} + \vec{AB}|
+		= \left|\begin{pmatrix}-b\\0\end{pmatrix} +
+			c\begin{pmatrix}\cos\theta\\\sin\theta\end{pmatrix}\right|
 	\]
 	\[
-	\tf a^2 = (c\cos\theta - b)^2 + c^2\sin^2\theta
-	= b^2 + c^2 - 2bc\cos\theta
+		\tf a^2 = {(c\cos\theta - b)}^2 + c^2\sin^2\theta
+		= b^2 + c^2 - 2bc\cos\theta
 	\]
 \end{proof}
 
@@ -75,16 +77,14 @@ A plane can also be expressed in Cartesian form i.e.
 	\[ \tf -x + 2y - z = -1 + 4 - 3 \tf x - 2y + z = 0 \]
 \end{ex}
 
-% Put this in curves and surfaces?
+% TODO: Put this in curves and surfaces?
 If $r(t)$ is a parameterisation of a curve, then its length can be calculated
 as $ \int_a^b | r'(t) | dt $.
 
 For a surface $z = f(x,y)$, $\mathbf{r} = x\mathbf{i} + y\mathbf{j} +
 f(x,y)\mathbf{k}$. This doesn't work for closed surfaces.
 
-% TODO: split into sections
-
-Partial Differentiation
+\subsection{Partial Differentiation}
 
 We can find the slope on a surface in different directions by fixing one value.
 For example if $z = xy$ and we fix $y$, then $\frac{\partial z}{\partial x} =
@@ -107,14 +107,14 @@ y$. We can fix $x$ to obtain a similar result.
 \end{thm}
 
 \begin{proof}
-	\[ \frac{u(x+h) - u(x)}{h} \to u'(x) as h \to 0 \]
-	\[ let v = \frac{u(x+h) - u(x)}{h} - u'(x), v \to 0 as h \to 0 \]
+	\[ \frac{u(x+h) - u(x)}{h} \to u'(x), h \to 0 \]
+	\[ v = \frac{u(x+h) - u(x)}{h} - u'(x), v \to 0, h \to 0 \]
 	\[ \implies u(x+h) = u(x) + (u'(x) + v)h \]
-	\[ let w = \frac{f(u+k) - f(u)}{k} - f'(u), w \to 0 as k \to 0 \]
+	\[ w = \frac{f(u+k) - f(u)}{k} - f'(u), w \to 0, k \to 0 \]
 	\[ \implies f(u+k) = f(u) + (f'(u) + w)k \]
-	\[ \frac{df}{dx} = \frac{f(u(x+h) - f(u(x))}{h} \]
-	\[ f(u(x+h) - f(u(x))= f(u(x) + (u'(x)+v)h) - f(u(x))  = (f'(u(x) +
-	w)(u'(x) + v), \]
+	\[ \frac{df}{dx} = \frac{f(u(x+h)) - f(u(x))}{h} \]
+	\[ f(u(x+h)) - f(u(x))= f(u(x) + (u'(x)+v)h) - f(u(x))  = (f'(u(x) +
+	w))(u'(x) + v), \]
 	where $k = (u'(x)+v)h$, $k \to 0$ as $h \to 0$
 	\[ \implies \lim_{h \to 0} \frac{f(u(x+h)) - f(u(x))}{h} =
 	f'(u(x))u'(x) \]
@@ -139,7 +139,7 @@ y$. We can fix $x$ to obtain a similar result.
 	z}{\partial y} y'(t) \]
 \end{proof}
 
-Tangents
+\subsection{Tangents}
 
 If $\mathbf{r}(t)$ is a point in space, then the vector tangent to it is $r(t) + \lambda
 \mathbf{r}'(t)$.
@@ -184,15 +184,15 @@ and the two partial derivatives.
 \begin{ex}
 	Find the plane tangent to $x^2 + y^2 + z^2 = 9$ at $(1,2,2)$.
 
-	\[ \mathbf{r} = (x,y,z), z = (9 - x^2 - y^2)^{1/2} \]
+	\[ \mathbf{r} = (x,y,z), z = {(9 - x^2 - y^2)}^{1/2} \]
 
 	\[ \frac{\partial \mathbf{r}}{\partial x} = (1, 0, \partial z /
 	\partial x) \]
 	\[ \frac{\partial \mathbf{r}}{\partial y} = (0, 1, \partial z /
 	\partial y) \]
 
-	\[ \frac{\partial z}{\partial x} = - \frac{x}{(9-x^2-y^2)^{1/2}} \]
-	\[ \frac{\partial z}{\partial y} = - \frac{y}{(9-x^2-y^2)^{1/2}} \]
+	\[ \frac{\partial z}{\partial x} = - \frac{x}{{(9-x^2-y^2)}^{1/2}} \]
+	\[ \frac{\partial z}{\partial y} = - \frac{y}{{(9-x^2-y^2)}^{1/2}} \]
 
 	Plugging in the values $x=1$ and $y=2$ we obtain:
 
@@ -210,7 +210,7 @@ and the two partial derivatives.
 	\[ \mathbf{p} = (1,1/2,1/2) + \lambda (1, 0, -1/2) + \mu (0, 1, -1) \]
 \end{ex}
 
-Directional Derivatives
+\subsection{Directional Derivatives}
 
 Let $\mathbf{r} = \left(x_0 + tn_1, y_0 + tn_2, z(x_0 + tn_1, y_0 +
 tn_2)\right)$ describe a curve in the plane, where $\mathbf{n} = (n_1, n_2)$ is
@@ -247,7 +247,7 @@ Hence the slope on the surface $z$ in the direction of $n$ is given by:
 	4e^{-4} - 2e^{-4}) = 0 \]
 \end{ex}
 
-Greatest Slope
+\subsubsection{Greatest Slope}
 
 \[ \bigtriangledown z \cdot \mathbf{\hat{n}} = |\bigtriangledown
 z||\mathbf{\hat{n}}|\cos \theta \]
@@ -263,7 +263,7 @@ $\bigtriangledown z$, since $|a|^2 = a \cdot a$.
 	\[ |\bigtriangledown z| = 2\sqrt{2} \]
 \end{ex}
 
-Volume under a surface
+\subsection{Volume under a surface}
 
 Let $f(x,y)$ be a surface, the volume underneath it is
 \[ v = \int_a^b \int_{x_1(y)}^{x_2(y)} f(x,y) dx dy \]
@@ -287,7 +287,7 @@ Let $f(x,y)$ be a surface, the volume underneath it is
 
 \end{ex}
 
-Polar Coordinates
+\subsection{Changing Coordinates}
 
 When changing coordinate system, we have to take into account how that affects
 differentiation and integration.
@@ -312,7 +312,7 @@ $\mathbf{f}(r,\theta) = r\cos\theta\mathbf{i} + r\sin\theta\mathbf{j}$.
 A change by $dr$ yields:
 \[ (r+dr)\cos\theta\mathbf{i} + (r+dr)\sin\theta\mathbf{j} -
 r\cos\theta\mathbf{i} - r\sin\theta\mathbf{j} \]
-\[ = dr(\cos\theta\mathbf{i} + \sin\theta\mathbf{j} \]
+\[ = dr(\cos\theta\mathbf{i} + \sin\theta\mathbf{j}) \]
 
 A change by $d\theta$ yields:
 \[ r\cos(\theta + d\theta)\mathbf{i} + r\sin(\theta + d\theta)\mathbf{j} -
@@ -329,7 +329,7 @@ We find that a change by $d\theta$ is simply:
 
 Now we compute the full differential area:
 \[ | dr(\cos\theta \mathbf{i} + \sin\theta \mathbf{j}) \wedge
-d\theta(-r \sin\theta \mathbf{i} + r\cos\theta \mathbf{j} | \]
+d\theta(-r \sin\theta \mathbf{i} + r\cos\theta \mathbf{j}) | \]
 \[ = | r\cos^2\theta + r\sin^2\theta | drd\theta = rdrd\theta \]
 
 \begin{ex}
@@ -440,7 +440,7 @@ This leads us to the following definition.
 	\]
 \end{ex}
 
-Surface Area
+\subsection{Surface Area}
 
 Take a parallelogram with corners:
 
@@ -590,7 +590,7 @@ expressed as $(x,y,f(x,y))$, the surface area is much simpler:
 \end{ex}
 
 % TODO: move this to another file
-Differential Equations
+\section{Differential Equations}
 
 \begin{defn}[Fixed Point]
 	Let $f(x) = \frac{dx}{dt}$ then $x^*$ is a fixed point if $f(x^*) = 0$.
@@ -649,7 +649,7 @@ If $\lambda < 0$, $z \to 0$ as $t \to \infty$ (stable). \\
 If $\lambda > 0$, $z \to \infty$ as $t \to \infty$ (unstable). \\
 If $\lambda = 0$, $z$ is constant.
 
-Linear First Orders
+\subsection{Linear First Orders}
 
 \[
 	\frac{dy}{dx} + p(x)y = q(x)
@@ -694,6 +694,8 @@ Substituting in $g(x)$ we have:
 
 	Using the original equation, it is easy to see that $c=0$ and $y=1$.
 \end{ex}
+
+\subsection{Linear Second Order Equations}
 
 \begin{defn}[Homogeneous Equation]
 	A differential equation is homogeneous if there are no terms
@@ -811,7 +813,7 @@ We will use these definitions to solve linear second order O.D.Es.
 	\]
 \end{ex}
 
-We now look at some inhomogeneous equations.
+\subsection{Inhomogeneous Equations}
 
 \begin{ex}
 	\[
@@ -899,7 +901,7 @@ inhomogeneous equation is given by
 	\]
 \end{ex}
 
-Variation of parameters
+\subsection{Variation of parameters}
 
 Let $y_p = q_1(x) v_1(x) + q_2(x) v_2(x)$, then:
 \[
