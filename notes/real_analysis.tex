@@ -43,157 +43,207 @@
 	the supremum of this set exists. $y$ is the maximum of the set
 	so it must be the supremum too.
 
-	 $x > 0 \implies y-x < y$ so $y-x$ is not an upper bound for $S_x$.
-	 \begin{align*}
-		 &\implies \exists s \in S_x : y-x < s = kx, \, k \in \NN \\
-		 &\implies y < (k+1)x = mx \in S_x
-	 \end{align*}
-	 which is a contradiction to our assumption.
- \end{proof}
+	$x > 0 \implies y-x < y$ so $y-x$ is not an upper bound for $S_x$.
+	\begin{align*}
+		&\implies \exists s \in S_x : y-x < s = kx, \, k \in \NN \\
+		&\implies y < (k+1)x = mx \in S_x
+	\end{align*}
+	which is a contradiction to our assumption.
+\end{proof}
 
- \begin{cor}
-	 \[ \forall y \in \RR, \, \exists N \in \NN : n > y \]
- \end{cor}
+\begin{cor}
+	\[ \forall y \in \RR, \, \exists N \in \NN : n > y \]
+\end{cor}
 
- \begin{prop}
-	 Let $x_n = \frac{1}{n}, \, n \in \NN$, then $\lim_{n \to \infty}
-	 x_n = 0$.
- \end{prop}
+\begin{prop}
+	Let $x_n = \frac{1}{n}, \, n \in \NN$, then $\lim_{n \to \infty}
+	x_n = 0$.
+\end{prop}
 
- \begin{proof}
-	 Let $\frac{1}{\eps} \in \RR$. By the Archimedian Property,
-	 $\exists N \in \NN : N > \frac{1}{\eps}, \, \forall \eps > 0$.
+\begin{proof}
+	Let $\frac{1}{\eps} \in \RR$. By the Archimedian Property,
+	$\exists N \in \NN : N > \frac{1}{\eps}, \, \forall \eps > 0$.
 
-	 Let $n>N$, then
-	 \[ |x_n - 0| = \frac{1}{n} < \frac{1}{N} < \frac{1}{1/\eps} < \eps \]
- \end{proof}
+	Let $n>N$, then
+	\[ |x_n - 0| = \frac{1}{n} < \frac{1}{N} < \frac{1}{1/\eps} < \eps \]
+\end{proof}
 
- \begin{prop}
-	 Assume $\lim_{n \to \infty} x_n = a$ and $\lim_{n \to \infty}
-	 y_n = b$, then:
-	 \begin{enumerate}
-		 \item
-			 $\lim (x_n + y_n) = a + b$
-		 \item
-			 $\lim (x_n \dot y_n) = a \dot b$
-		 \item
-			 Assuming $y_n \neq 0 \, \forall n$ and $b \neq 0$,
-			 $\lim(\frac{x_n}{y_n}) = \frac{a}{b}$
-		 \item
-			 If a sequence is constant i.e. $x_n = c \,
-			 \forall n$, then $\lim x_n = c$
-	 \end{enumerate}
- \end{prop}
+\begin{prop}
+	Assume $\lim_{n \to \infty} x_n = a$ and $\lim_{n \to \infty}
+	y_n = b$, then:
+	\begin{enumerate}
+		\item
+			$\lim (x_n + y_n) = a + b$
+		\item
+			$\lim (x_n \dot y_n) = a \dot b$
+		\item
+			Assuming $y_n \neq 0 \, \forall n$ and $b \neq 0$,
+			$\lim(\frac{x_n}{y_n}) = \frac{a}{b}$
+		\item
+			If a sequence is constant i.e. $x_n = c \,
+			\forall n$, then $\lim x_n = c$
+	\end{enumerate}
+\end{prop}
 
- \begin{proof}
-	 4:
-	 \begin{align*}
-		 &|x_n - c| = 0, \, \forall n \in \NN \\
-		 \implies &|x_n - c| < \eps, \, \forall \eps > 0 \in \RR, n \in \NN \\
-		 \implies &c = \lim x_n
-	 \end{align*}
+\begin{proof}
+	4:
+	\begin{align*}
+		&|x_n - c| = 0, \, \forall n \in \NN \\
+		\implies &|x_n - c| < \eps, \, \forall \eps > 0 \in \RR, n \in \NN \\
+		\implies &c = \lim x_n
+	\end{align*}
 
-	 1:
-	 For a given $\eps > 0, \, \exists N_1, N_2 \in \NN$ such that
-	 \[ n > N_1 \implies |x_n - a| < \frac{\eps}{2} \]
-	 \[ n > N_2 \implies |y_n - b| < \frac{\eps}{2} \]
-	 \[
-		 n > \max \{ N_1, N_2 \} \implies | (x_n + y_n) - (a+b)|
-	 \]
-	 \[
-		 \leq |x_n - a| + |y_n - b|
-		 < \frac{\eps}{2} + \frac{\eps}{2} = \eps
-	 \]
+	1:
+	For a given $\eps > 0, \, \exists N_1, N_2 \in \NN$ such that
+	\[ n > N_1 \implies |x_n - a| < \frac{\eps}{2} \]
+	\[ n > N_2 \implies |y_n - b| < \frac{\eps}{2} \]
+	\[
+		n > \max \{ N_1, N_2 \} \implies | (x_n + y_n) - (a+b)|
+	\]
+	\[
+		\leq |x_n - a| + |y_n - b|
+		< \frac{\eps}{2} + \frac{\eps}{2} = \eps
+	\]
 
-	 3:
-	 \[ \exists N_1 : |x_n - a| < |a|/2 \]
-	 \[ |a| = |a + x_n - x_n| \leq |a - x_n| + |x_n| < |a|/2 + |x_n| \]
-	 \[ \implies |a|/2 < |x_n| \implies 1/|x_n| < 2/|a| \]
-	 \[ \exists N_2 : |x_n -a| < \frac{|a|^2}{2}\eps \]
-	 \begin{align*}
-		 n > \max{N_1, N_2} \implies \\
-		 |\frac{1}{x_n} - \frac{1}{a}| &= |\frac{a-x_n}{ax_n} \\
-		 &= \frac{1}{|a|}\frac{1}{|x_n|}|x_n - a| \\
-		 &< \frac{1}{|a|}\frac{2}{|a|}|x_n - a| \\
-		 &< \frac{2}{|a|^2}\frac{a^2}{2}\eps = \eps
-	 \end{align*}
+	3:
+	\[ \exists N_1 : |x_n - a| < |a|/2 \]
+	\[ |a| = |a + x_n - x_n| \leq |a - x_n| + |x_n| < |a|/2 + |x_n| \]
+	\[ \implies |a|/2 < |x_n| \implies 1/|x_n| < 2/|a| \]
+	\[ \exists N_2 : |x_n -a| < \frac{|a|^2}{2}\eps \]
+	\begin{align*}
+		n > \max{N_1, N_2} \implies \\
+		|\frac{1}{x_n} - \frac{1}{a}| &= |\frac{a-x_n}{ax_n} \\
+		&= \frac{1}{|a|}\frac{1}{|x_n|}|x_n - a| \\
+		&< \frac{1}{|a|}\frac{2}{|a|}|x_n - a| \\
+		&< \frac{2}{|a|^2}\frac{a^2}{2}\eps = \eps
+	\end{align*}
 
- \end{proof}
+\end{proof}
 
- \begin{ex}
-	 \[
-		 \lim \frac{n^2 - 1}{n_2 + 1}
-		 = \lim \frac{1 - \frac{1}{n^2}}{1 + \frac{1}{n^2}}
-	 \]
-	 \[ \lim \frac{1}{n} = 0 \implies \lim \frac{1}{n^2} = 0 \]
-	 \[ \implies \lim \frac{n^2 - 1}{n_2 + 1} = 1 \]
- \end{ex}
+\begin{ex}
+	\[
+		\lim \frac{n^2 - 1}{n_2 + 1}
+		= \lim \frac{1 - \frac{1}{n^2}}{1 + \frac{1}{n^2}}
+	\]
+	\[ \lim \frac{1}{n} = 0 \implies \lim \frac{1}{n^2} = 0 \]
+	\[ \implies \lim \frac{n^2 - 1}{n_2 + 1} = 1 \]
+\end{ex}
 
- \begin{defn}[Divergence]
-	 A sequence $x_n$ diverges to $+\infty$ if $\forall A > 0, \,
-	 \exists N \in \NN : n > N \implies x_n > A$. We say
-	 \[ \lim_{n \to \infty} x_n = \infty \]
+\begin{defn}[Divergence]
+	A sequence $x_n$ diverges to $+\infty$ if $\forall A > 0, \,
+	\exists N \in \NN : n > N \implies x_n > A$. We say
+	\[ \lim_{n \to \infty} x_n = \infty \]
 
-	 Similarly, if $\forall A < 0, \, \exists N \in \NN : n > N
-	 \implies x_n - A$, then
-	 \[ \lim_{n \to \infty} x_n = -\infty \]
- \end{defn}
+	Similarly, if $\forall A < 0, \, \exists N \in \NN : n > N
+	\implies x_n - A$, then
+	\[ \lim_{n \to \infty} x_n = -\infty \]
+\end{defn}
 
- \begin{defn}[Increasing]
-	 A sequence is called increasing if $\forall n \in \NN, \, x_n
-	 \leq x_{n+1}$.
- \end{defn}
+\begin{defn}[Increasing]
+	A sequence is called increasing if $\forall n \in \NN, \, x_n
+	\leq x_{n+1}$.
+\end{defn}
 
- \begin{defn}[Decreasing]
-	 A sequence is called decreasing if $\forall n \in \NN, \, x_n
-	 \geq x_{n+1}$.
- \end{defn}
+\begin{defn}[Decreasing]
+	A sequence is called decreasing if $\forall n \in \NN, \, x_n
+	\geq x_{n+1}$.
+\end{defn}
 
- \begin{defn}[Monotonic]
-	 A sequence is monotonic if it is increasing or descreasing.
- \end{defn}
+\begin{defn}[Monotonic]
+	A sequence is monotonic if it is increasing or descreasing.
+\end{defn}
 
- \begin{defn}[Bounded]
-	 A sequence is bounded if $\exists A > 0 : |x_n| \leq A \,
-	 \forall n \in \NN$.
- \end{defn}
+\begin{defn}[Bounded]
+	A sequence is bounded if $\exists A > 0 : |x_n| \leq A \,
+	\forall n \in \NN$.
+\end{defn}
 
- \begin{thm}[Monontonic Convergence]
-	 If $x_n$ is bounded and increasing, it converges to $\sup\{x_1,
-	 \ldots, x_n\}$. If it is bounded and decreasing then it
-	 converges to $\inf\{x_1, \ldots, x_n\}$.
- \end{thm}
+\begin{thm}[MonontonicConvergence]
+	If $x_n$ is bounded and increasing, it converges to $\sup\{x_1,
+	\ldots, x_n\}$. If it is bounded and decreasing then it
+	converges to $\inf\{x_1, \ldots, x_n\}$.
+\end{thm}
 
- \begin{proof}
-	 Assume the sequence is increasing.\\
+\begin{proof}
+	Assume the sequence is increasing.\\
 
-	 The supremum, $a$, of the sequence exists because $\RR$ is
-	 complete and the sequence is bounded. Take $\eps > 0$, then $a
-	 - \eps < a$ so $a - \eps$ is not a upper bound for $\{x_1,
-	 \ldots, x_n\}$ and there is $N \in \NN$ such that $x_N > a - \eps$.
+	The supremum, $a$, of the sequence exists because $\RR$ is
+	complete and the sequence is bounded. Take $\eps > 0$, then $a
+	- \eps < a$ so $a - \eps$ is not a upper bound for $\{x_1,
+	\ldots, x_n\}$ and there is $N \in \NN$ such that $x_N > a - \eps$.
 
-	 For every $n > N$ we have $x_n \geq x_N$, due to the increasing
-	 nature of the sequence. Hence,
-	 \[
-		 a - \eps < x_n \leq a < a + \eps
-		 \implies a - \eps < x_n < a + \eps
-		 \implies | x_n - a | < \eps
-	 \]
-	 and $\lim x_n = \sup\{x_1, \ldots, x_n\}$.\\
+	For every $n > N$ we have $x_n \geq x_N$, due to the increasing
+	nature of the sequence. Hence,
+	\[
+		a - \eps < x_n \leq a < a + \eps
+		\implies a - \eps < x_n < a + \eps
+		\implies | x_n - a | < \eps
+	\]
+	and $\lim x_n = \sup\{x_1, \ldots, x_n\}$.\\
 
-	 Assume now that the sequence is decreasing.\\
+	Assume now that the sequence is decreasing.\\
 
-	 Again by completeness and boundedness $a = \inf \{x_1, \ldots,
-	 x_n\}$ is well defined.
-	 Fix $\eps > 0$ then $a + \eps > a$ and so $a + \eps$ is not a
-	 lower bound for $\{x_1, \ldots, x_n\}$ and there is $N \in \NN$
-	 such that $x_N < a + \eps$.
-	 Since $x_n$ is decreasing, $n > N \implies x_n \leq x_N$, so
-	 \[
-		 a - \eps < a \leq x_n < a + \eps
-		 \implies | x_n - a | < \eps
-	 \]
-	 and $\lim x_n = \inf \{x_1, \ldots, x_n\}$.
- \end{proof}
+	Again by completeness and boundedness $a = \inf \{x_1, \ldots,
+	x_n\}$ is well defined.
+	Fix $\eps > 0$ then $a + \eps > a$ and so $a + \eps$ is not a
+	lower bound for $\{x_1, \ldots, x_n\}$ and there is $N \in \NN$
+	such that $x_N < a + \eps$.
+	Since $x_n$ is decreasing, $n > N \implies x_n \leq x_N$, so
+	\[
+		a - \eps < a \leq x_n < a + \eps
+		\implies | x_n - a | < \eps
+	\]
+	and $\lim x_n = \inf \{x_1, \ldots, x_n\}$.
+\end{proof}
+
+\begin{ex}
+	Let $x_1 = 2$ and $x_{n+1} = 2 + \sqrt{x_n}$, so $x_2 = 2 +
+	\sqrt{2}$, $x_3 = 2 + \sqrt{2 + \sqrt{2}}$, etc.
+
+	We aim to show that $2 \leq x_n \leq 4 \quad \forall n \in \NN$.
+
+	$n=1$ is clearly true, so we may assume true for $n=k$.
+
+	\[
+		2 \leq x_k \leq 4 \implies \sqrt{2} \leq \sqrt{x_k} \leq \sqrt{4} = 2
+	\]
+	\[
+		\implies 2 + \sqrt{2} \leq 2 + \sqrt{x_k} \leq 4
+	\]
+	\[
+		2 + \sqrt{2} > 2 \implies x_{k+1} > 2 \implies 2 \leq x_{k+1} \leq 4
+	\]
+
+	So $x_n$ is bounded and increasing hence $\lim_{n \to \infty} x_n = 4$.
+\end{ex}
+
+\begin{def}[CauchySequence]
+	A sequence is Cauchy if
+	\[
+		\forall \eps > 0 \, \exists N \in \NN :
+		| x_n - x_m | < \eps \forall n,m > N
+	\]
+\end{def}
+
+\begin{thm}
+	Any Cauchy sequence is bounded.
+\end{thm}
+
+\begin{proof}
+	Let $x_n$ be a Cauchy sequence. Take $\eps = 1$, then $\exists
+	N \in \NN : |x_n - x_m| < 1 \quad \forall n,m > N$.
+
+	If $m = N+1$ then $|x_n - x_{N+1}| < 1 \iff x_{N+1} - 1 < x_n < x_{N+1} + 1$.
+
+	$A = \max\{x_1, x_2, \ldots, x_N, x_{N+1}+1\}$
+	$B = \min\{x_1, x_2, \ldots, x_N, x_{N+1}-1\}$
+
+	So $B \leq x_n \leq A \quad \forall n$, hence $x_n$ is bounded.
+\end{proof}
+
+\begin{thm}
+	A sequence is Cauchy iff it converges.
+\end{thm}
+
 
 \end{document}
