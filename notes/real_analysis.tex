@@ -329,5 +329,88 @@
 	\end{align*}
 \end{proof}
 
+\begin{ex}[Harmonic Series]
+	\[
+		y_n = 1 + \frac{1}{2} + \cdots + \frac{1}{n}
+	\]
+	We claim that $y_n$ diverges.
+	\begin{align*}
+		y_{2n} - y{n} &=
+		\left(1 + \frac{1}{2} + \cdots + \frac{1}{2n} \right)
+		\left(1 + \frac{1}{2} + \cdots + \frac{1}{n} \right) \\
+		&= \frac{1}{n+1} + \cdots + \frac{1}{2n}
+		> \frac{1}{2n} + \cdots + \frac{1}{2n} = \frac{1}{2}
+	\end{align*}
+
+	If we set $\eps = \frac{1}{3}$ then for $m = 2n$
+	\[
+		|y_m - y_n| > \eps
+	\]
+	hence the sequence is not Cauchy and so it cannot converge.
+\end{ex}
+
+\begin{cor}
+	Any convergent sequence is bounded.
+\end{cor}
+
+\begin{ex}
+	\[
+		x_n = {(-1)}^n
+	\]
+	\[
+		x_n = \pm 1 \quad \forall n \in \NN
+	\]
+	hence $x_n$ is bounded yet it does not converge.
+\end{ex}
+
+\section{Subsequences}
+
+\begin{prop}
+	If $x_n$ is a convergent sequence with $\lim_{n \to \infty} x_n
+	= a$, then any subsequence $x_{n_k}$ coverges and $\lim_{k \to
+	\infty} x_{n_k} = a$.
+\end{prop}
+
+\begin{proof}
+	$x_n$ coverges so
+	\[
+		\forall \eps > 0 \exists N : |x_n - a| < \eps \quad \forall n > N
+	\]
+
+	Since $x_{n_k}$ is a subsequence of $x_n$, $n_k \geq k$ hence
+	\[
+		| x_{n_k} -a | < \eps \quad \forall k > N
+		\implies \lim x_{n_k} = a
+	\]
+\end{proof}
+
+\begin{thm}[Bolzano-Weierstrass]
+	Any bounded sequence has a convergent subsequence.
+\end{thm}
+
+\begin{proof}
+	Let $x_n$ be a bounded sequence, then
+	\[
+		\exists I_1 = [a,b] : x_n \in I_1, \, \forall n \geq 1
+	\]
+
+	If $c_1$ is the midpoint of $I_1$, then either $[a,c_1]$ or
+	$[c_1,b]$ contains infinitely many terms of $x_n$. We call this
+	$I_2$.
+
+	We can continue in this manner, forming a sequnce $I_n$.
+
+	We can form a subsequence of $x_n$ by taking $x_{n_1} \in I_1$,
+	$x_{n_2} \in I_2$, etc.\ such that $n_1 < n_2 < \cdots < n_k$.
+
+	Since the interval sizes are arbitrarily small, we can take
+	$\eps = b_n - a_n$, where $I_n = [a_n,b_n]$. Hence
+	\[
+		|x-y| < b_n - a_n = \eps, \quad \forall x,y \in I_n
+	\]
+	and $x_{n_k}$ is Cauchy so it must converge.
+\end{proof}
+
+\section{Functions}
 
 \end{document}
