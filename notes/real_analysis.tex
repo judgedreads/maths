@@ -217,13 +217,13 @@
 	So $x_n$ is bounded and increasing hence $\lim_{n \to \infty} x_n = 4$.
 \end{ex}
 
-\begin{def}[CauchySequence]
+\begin{defn}[Cauchy Sequence]
 	A sequence is Cauchy if
 	\[
 		\forall \eps > 0 \, \exists N \in \NN :
 		| x_n - x_m | < \eps \forall n,m > N
 	\]
-\end{def}
+\end{defn}
 
 \begin{thm}
 	Any Cauchy sequence is bounded.
@@ -241,9 +241,93 @@
 	So $B \leq x_n \leq A \quad \forall n$, hence $x_n$ is bounded.
 \end{proof}
 
+\begin{prop}
+	If $S$ and $T$ are bounded subsets of $\RR$ and $S \subseteq T$,
+	then $\inf T \leq \inf S$.
+\end{prop}
+
+\begin{proof}
+	Let $t = \inf T$ and $s = \inf S$.
+
+	Assume $s<t$. By completeness, $t$ cannot be a lower bound of
+	$S$, hence
+	\begin{align*}
+		\exists \alpha \in S : \alpha < t \\
+		&\implies \alpha < \beta \forall \beta \in T \\
+		&\implies \alpha \notin T \\
+		&\implies S \nsubseteq T
+	\end{align*}
+
+	The contrapositive statement has been proved, hence the original
+	statement is true as well.
+\end{proof}
+
 \begin{thm}
 	A sequence is Cauchy iff it converges.
 \end{thm}
+
+\begin{proof}
+	Assume that a sequence converges such that $\lim x_n = a$, then
+	\[
+		\forall \eps > 0 \exists N \in \NN :
+		| x_n - a | < \frac{\eps}{2}, \quad
+		| x_m - a | < \frac{\eps}{2}, \quad
+		\forall n,m > N
+	\]
+	\begin{align*}
+		|x_n - x_m| &= |(x_n -a) - (x_m -a)| \\
+			    &\leq |x_n -a| + |x_m -a| \\
+			    &< \frac{\eps}{2} + \frac{\eps}{2} = \eps
+	\end{align*}
+
+	Assume now that $x_n$ is Cauchy, then we know it is bounded and
+	by completeness, $\inf\{x_1, \ldots, x_n, x_{n+1}\}$ is well
+	defined.
+
+	Let
+	\begin{align*}
+		b_1 &= \inf \{x_1, \ldots\} \\
+		b_2 &= \inf \{x_2, \ldots\} \\
+		b_n &= \inf \{x_n, \ldots\}
+	\end{align*}
+	then
+	\[
+		b_1 \leq b_2 \leq \cdots \leq b_n \leq \cdots
+	\]
+	and
+	\[
+		b_n \leq x_n \leq B
+	\]
+	where $B$ is an upper bound $\forall n \in \NN$.
+
+	By the Monotonic Covergence Theorem, $a = \lim b_n$ exists, so
+	\[
+		\forall \eps > 0 \exists N_1 \in \NN :
+		|b_n - a| < \frac{\eps}{3}, \quad \forall n > N_1
+	\]
+	\[
+		b_n + \frac{\eps}{3} > b_n = \inf\{x_n\}
+	\]
+	\[
+		\implies \exists m_0 > N_1 :
+		b_n < x_{m_0} < b_n + \frac{\eps}{3}
+	\]
+
+	$x_n$ is Cauchy, hence
+	\[
+		\exists N_2 \in \NN :
+		|x_n - x_m| < \frac{\eps}{3}, \quad
+		\forall n,m > N_2
+	\]
+
+	Let $N = \max\{N_1, N_2\}$, then
+	\begin{align*}
+		|x_n - a| &\leq |(x_n - x_m) + (x_m - b_n) + (b_n - a)| \\
+			  &\leq |x_n - x_m| + |x_m - b_n| + |b_n - a| \\
+			  &< \frac{\eps}{3} + \frac{\eps}{3}
+				+ \frac{\eps}{3} = \eps
+	\end{align*}
+\end{proof}
 
 
 \end{document}
