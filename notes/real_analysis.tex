@@ -413,4 +413,45 @@
 
 \section{Functions}
 
+\begin{defn}[Continuous]
+	A function $f: (a,b) \to \RR$ is continuous at $c \in (a,b)$
+	if for any sequence of real numbers $x_n \in (a,b)$ where $\lim
+	x_n = c$, one has $\lim f(x_n) = f(c)$.
+
+	Equivalently, we could say $\lim_{x \to c} f(x) = f(c)$.
+
+\end{defn}
+
+\begin{defn}[Function Limits]
+	Functions can have left and right limits.
+
+	Let $f: (a,c) \cup (c,b) \to \RR$.
+
+	Consider $x \in (a,c)$, then $\lim_{x \to c^-} f(x) = L$ is the
+	left limit of $f$ if:
+	\[
+		\forall \eps > 0 \exists \delta > 0 :
+		c - \delta < x < c \implies L - \eps < f(x) < L
+	\]
+
+	Now consider $x \in (c,b)$, then $\lim_{x \to c^+} f(x) = L$ is
+	the right limit of $f$ if:
+	\[
+		\forall \eps > 0 \exists \delta > 0 :
+		a < x < a + \delta \implies L < f(x) < L + \eps
+	\]
+
+	Let $x \in (a,c) \cup (c,b)$, then $\lim_{x \to c} f(x) = L$ is
+	the limit of $f$ if:
+	\[
+		\forall \eps > 0 \exists \delta > 0 :
+		|x-c| < \delta \implies |f(x) - L| < \eps
+	\]
+
+	If the limit exists, then so do the left and right limits and they are
+	all equal. Conversely, if the left and right limits exist and are equal,
+	the limit exists and share this common value.
+\end{defn}
+
+
 \end{document}
