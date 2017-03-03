@@ -453,5 +453,216 @@
 	the limit exists and share this common value.
 \end{defn}
 
+\begin{thm}
+	Let $f$ be a function defined on $U = (a,c) \cup (c,b)$, then
+	$\lim_{x \to c}f(x)$ exists iff for all sequences $x_n \in U$
+	with $\lim_{x \to \infty} x_n = c$, we have
+	\[
+		\lim_{n \to \infty} f(x_n) = \lim_{x \to c} f(x)
+	\]
+\end{thm}
+
+\begin{proof}
+	Assume that $\lim_{x \to c}f(x) = L$.
+
+	\[
+		\forall \eps > 0 \, \exists \delta :
+		|x-c| < \delta \implies |f(x)-L| < \eps
+	\]
+
+	Let $x_n$ be a sequence such that $\lim_{n \to\infty}x_n = c$, then
+	\[
+		\forall \eps' > 0 \, \exists N \in \NN :
+		|x_n - c| < \eps', \, \forall n > N
+	\]
+
+	Let $\eps' = \delta$, then
+	\begin{align*}
+		|x_n - c| < \delta \quad \forall n > N \\
+		&\implies |f(x_n) - L| < \eps \quad \forall n > N \\
+		&\implies \lim f(x_n) = L
+	\end{align*}
+
+	Assume now that $\lim x_n = L$.
+
+	Assume that $\lim f(x) \neq L$, then
+	\[
+		\exists \eps > 0 \, \forall \delta > 0 : \exists x :
+		|x-c| < \delta \implies |f(x) - L| \geq \eps
+	\]
+
+	Fix $\eps$ and let $\delta = 1$, then there exists $x_1$ such that:
+	\[
+		|x_1 - c| < 1 \implies |f(x_1) - L| \geq \eps
+	\]
+
+	Let $\delta = \frac{1}{2}$, then there exists $x_2$ such that:
+	\[
+		|x_2 - c| < \frac{1}{2} \implies |f(x_2) - L| \geq \eps
+	\]
+
+	Continuing in this way, we obtain a sequence $x_n$ such that
+	$\lim f(x_n) \neq L$, which is an obvious contradiction.
+\end{proof}
+
+\begin{rem}
+	Let $f:[a,b] \to \RR$ be a function. $f$ is continuous as $c \in
+	(a,b)$ if $\lim_{x \to c} f(x) = f(c)$.
+	$f$ is continuous as $a \in (a,b)$ if $\lim_{x \to a^-} f(x) =
+	f(a)$.
+	$f$ is continuous as $a \in (a,b)$ if $\lim_{x \to b^+} f(x) =
+	f(b)$.
+\end{rem}
+
+\begin{defn}[Continuous]
+	$f:[a,b] \to \RR$ is continuous at $c$ if
+	\[
+		\forall \eps > 0 \, \exists \delta > 0 :
+		|x-c| < \delta \implies |f(x)-f(c)| < \eps
+	\]
+	$f$ is continuous if it is continuous at every point in its
+	domain.
+\end{defn}
+
+\subsection{Open and Closed Subsets}
+
+\begin{defn}[Open Subset]
+	A subset $U \subset \RR$ is called open if
+	\[
+		\forall a \in U \, \exists \eps > 0 :
+		(a-\eps, a+\eps) \subset U
+	\]
+\end{defn}
+
+\begin{defn}[Preimage]
+	Let $f:[a,b] \to \RR$ and $U \subset \RR$. The preimage of $U$
+	is defined as follows:
+	\[
+		f^{-1}(U) = \{ x \in [a,b] \mid f(x) \in U \}
+	\]
+\end{defn}
+
+\begin{ex}
+	\[
+		f(x) = x^2, \quad f:\RR \to \RR, \quad U = \{0,1\}
+	\]
+	\[
+		f^{-1}(U) = \{ x \in \RR \mid x^2 \in U \}
+		= \{ \pm 1, 0 \}
+	\]
+\end{ex}
+
+\begin{defn}[Closed Subset]
+	A subset $V \in \RR$ is closed if its compliment is open.
+\end{defn}
+
+\begin{prop}
+	$V \subset \RR$ is closed iff for any convergent sequence of
+	real numbers $x_n$ in $V$, the limit is also in $V$.
+\end{prop}
+
+\begin{proof}
+	Let $V = [a,b]$ and $x_n$ be a sequence in $V$.
+
+	If every $x_n$ has a limit in $V$ then the sequence $a +
+	\frac{\eps}{n}$, which clearly converges to $a$, must be in $V$.
+	Likewise, the sequence $b - \frac{\eps}{n}$, whose limit is
+	clearly $b$, must have it's limit in $V$.
+
+	Assuming $V$ is closed, assume also that there is a sequence
+	$x_n$ whose limit $L \notin [a,b]$, then $L = a -
+	\frac{\eps}{2}$ or $b + \frac{\eps}{2}$ for some $\eps > 0 \in
+	RR$.
+
+	\begin{align*}
+		L &= a - \frac{\eps}{2} \\
+		  &\implies \exists N \in \NN : |x_n - a + \frac{\eps}{2}|
+		< \frac{\eps}{2}, \,\forall n > N \\
+		&\implies |x_n - a| - |- \frac{\eps}{2}| < \frac{\eps}{2} \\
+		&\implies |x_n - a| < \eps \\
+		&\implies a = \lim x_n
+	\end{align*}
+	This is a contradiction because $a \in V$.
+
+	\begin{align*}
+		L &= b + \frac{\eps}{2} \\
+		  &\implies \exists N \in \NN : |x_n - b - \frac{\eps}{2}|
+		< \frac{\eps}{2}, \,\forall n > N \\
+		&\implies |x_n - b| - |\frac{\eps}{2}| < \frac{\eps}{2} \\
+		&\implies |x_n - b| < \eps \\
+		&\implies b = \lim x_n
+	\end{align*}
+	This is a contradiction because $b \in V$.
+\end{proof}
+
+\subsection{Properties of Open and Closed Sets}
+
+\begin{itemize}
+	\item A finite union of closed subsets is closed
+	\item Any intersetion of closed subsets is closed
+	\item Any union of open subsets is open
+	\item A finite intersection of open subsets is open
+\end{itemize}
+
+\begin{proof}
+	Number 2. \\
+
+	Let $[a,b]$ and $[c,d]$ be two closed subsets in $\RR$, with a
+	nonempty intersection.  If either is a subset of the other, then
+	we are done.  If not, then either $c>a$ and $d>b$, or $a>c$ and
+	$b>d$, resulting in the intersection being either $[c,b]$ or
+	$[a,d]$, both of which are clearly closed.
+\end{proof}
+
+\begin{thm}
+	For a function $f:(a,b) \to \RR$, $f$ is continuous iff the
+	preimage of an open set under $f$ is also open.
+\end{thm}
+
+\begin{proof}
+	Assume that $f$ is continuous. \\
+
+	Let $U \subset \RR$ be open and let $W$ be the preimage of $U$
+	under $f$.  Let $c \in W$ such that $f(c) = d \in U$. Given that
+	$U$ is open, ther is $\eps > 0$ such that $(d-\eps, d+\eps)
+	\subset U$.
+
+	By the coninuity of $f$, there must be a $\delta > 0$ such that
+	$|f(x) - f(c)| < \eps$ when $|x-c| < \delta$. We now need to
+	show that $(c-\delta, c+\delta) \subset W$.
+
+	\[
+		z \in (c-\delta, c+\delta) \implies |z-c| < \delta
+		\implies |f(z)-f(c)| < \eps
+	\]
+	\[
+		\implies |f(z) - f(d)| < \eps
+		\implies f(z) \in (d-\eps, d+\eps) \subset U
+		\implies z \in W
+	\]
+
+	So, $(c-\delta, c+\delta) \subset W$, hence
+	\[
+		\forall c \in W \exists \delta > 0 :
+		(c-\delta, c+\delta) \subset W
+	\]
+	and $W$ is open. \\
+
+	Assume the openness of sets is preserved under $f$. \\
+
+	Fix $\eps > 0$ and let $x \in (a,b)$ such that $f(x) = d \in
+	RR$.  Let $U = (d-\eps, d+\eps) \subset \RR$, then $W =
+	f^{-1}(U)$ is open by assumption.
+
+	\[
+		\implies \exists \delta > 0 :
+		(x-\delta, x+\delta) \subset W
+	\]
+
+	Let $y \in (x-\delta, x+\delta)$, then $|x-y| < \delta$ hence
+	$f(y) \in (d-\eps, d+\eps)$ and $|f(y) - f(x)| < \eps$.
+
+\end{proof}
+
 
 \end{document}
