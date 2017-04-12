@@ -665,4 +665,45 @@
 \end{proof}
 
 
+\subsection{Properties of Continuous Functions}
+
+\begin{enumerate}
+	\item The identity map is continuous
+	\item
+		If $f,g:(a,b) \to \RR$ are continuous, then $f+g$, $f-g$,
+		$f\cdot g$ are all continuous. If $g(x) \neq 0 \forall x
+		\in (a,b)$, $f(x)/g(x)$ is also continuous.
+	\item $f \circ g$ is continuous
+	\item $f(\lim x_n) = \lim f(x_n)$
+\end{enumerate}
+
+\begin{proof}
+	\begin{enumerate}
+		\item
+			Fix $\eps$ and take $\delta = \eps$, then
+			\[ |x-y| < \delta \implies |x-y| < \eps \implies |f(x)-f(y)| < \eps \]
+
+		\item Follows from preservation of open sets.
+
+		\item
+			Let $c = \lim x_n$, then
+			\[ \exists \eps > 0, \, N \in \NN : |x_n - c| < \eps, \, \forall n > N \]
+			By continuity,
+			\[ \exists \delta > 0 : |x_n -c| < \delta \implies |f(x)-f(c)| < \delta \]
+			\[
+				\implies |f(x_n) - f(c)| < \delta, \, \forall n > N
+				\implies \lim f(x_n) = f(c) = f(\lim x_n)
+			\]
+
+		\item
+			Follows from 4 and the properties of limits, since $f$ is continuous at $c$ iff
+			$x_n \to c \implies f(x_n) \to f(c)$.
+	\end{enumerate}
+\end{proof}
+
+\begin{cor}
+	Any polynomial is a continuous function.
+\end{cor}
+
+
 \end{document}
