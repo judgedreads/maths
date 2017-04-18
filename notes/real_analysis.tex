@@ -705,5 +705,132 @@
 	Any polynomial is a continuous function.
 \end{cor}
 
+\begin{thm}[Sandwich]
+	Let $a_n$ and $b_n$ be sequences such that $\lim a_n = \lim b_n
+	= C$. Then, if $c_n$ is a sequence such that $a_n \leq c_n \leq
+	b_n \, \forall n \in \NN$, then $\lim c_n = C$.
+\end{thm}
+
+\begin{proof}
+	$|c_n -C| \leq |a_n - C|$ or $|c_n -C| \leq |b_n - C|$, i.e.\
+	$c_n$ is closer to $C$ than either $a_n$ or $b_n$.
+
+	$\forall \eps > 0 \exists N_1,N_2 \in \NN : n > N_1 \implies
+	|a_n - C| < \eps, \, n > N_2 \implies |b_n - C| < \eps$
+
+	Let $N = \max(N_1, N_2)$, then for all $n > N$:
+	\[ |a_n - C| < \eps \quad |b_n - C| < \eps \]
+	\[ \implies |c_n -C| < \eps \implies \lim c_n = C \]
+\end{proof}
+
+\begin{thm}[Intermediate Value Theorem]
+	Let $f:[a,b] \to \RR$ be a continuous function. If $f(a) = A
+	\leq C \leq B = f(b)$, then $\exists c \in [a,b] : f(c) = C$.
+\end{thm}
+
+\begin{proof}
+	Consider $g(x) = f(x) - C$. We aim to show that $g(c) = 0$ for some $c \in [a,b]$.
+
+	Assume $A \leq C \leq B$, then
+	\[ g(a) = f(a) - C \leq 0 \]
+	\[ g(b) - f(b) - C \geq 0 \]
+
+	If $g(a) = 0$ or $g(b) = 0$, the we are done. Assume $g(a) < 0$ and $g(b) > 0$.
+
+	We can construct segments $[a_k, b_k] \subset [a,b]$, inductively as follows:
+	\[ [a_1, b_1] = [a,b] \]
+	Assume $[a_n, b_n]$ exists, and let $m$ be the midpoint of this interval.
+	\[ m = \frac{b_n + a_n}{2} \in [a_n, b_n] \subset [a,b] \]
+	Either $g(m) \leq 0$ or $g(m) > 0$. If $g(m) \leq 0$, then
+	\[ [a_{n+1}, b_{n+1}] = [m, b_n] \]
+	but if $g(m) > 0$, then
+	\[ [a_{n+1}, b_{n+1}] = [a_n, m] \]
+
+	We now have two bounded monotonic sequnces, $a_n$ and $b_n$, so
+	they have well-defined limits.
+
+	We also have
+	\[
+		b_{n+1} - a_{n+1} = \frac{1}{2^n}(b-a)
+		\implies \lim a_n = \lim b_n = c
+	\]
+
+	Note that $g(a_k) \leq 0$ and $g(b_k) \geq 0$ for every $k \NN$.
+	\[ \implies \lim g(a_n) = g(\lim a_n) = g(c) \leq 0 \]
+	similarly,
+	\[ \implies \lim g(b_n) = g(\lim b_n) = g(c) \geq 0 \]
+	\[ \implies g(c) = 0 \implies f(c) = C \]
+\end{proof}
+
+\begin{defn}[Bounded Function]
+	A function $f:I \to \RR$, where $I = [a,b] \subset \RR$, is bounded if
+	\[ \exists M \in \RR, \, m > 0 : |f(x)| \leq M \, \forall x \in I. \]
+	Equivalently, we could say
+	\[ \exists A, B \in \RR : A \leq f(x) \leq B \, \forall x \in I. \]
+\end{defn}
+
+\begin{thm}
+	If $f:[a,b] \to \RR$ is continuous, then $f$ is bounded.
+\end{thm}
+
+\begin{proof}
+	Assume that $f$ is unbounded on $I = [a,b]$. Let $m = \frac{b+a}{2}$
+	and divide $I$ into two subintervals: $[a,m]$ and $[m,b]$; $f$ must be
+	unbounded on one of these intervals.
+
+	Denote this subinterval by $[a_1, b_1]$, then construct a
+	sequence of subintervals inductively.
+
+	It is clear that $\lim a_n = \lim b_n = c$.
+
+	By assumption, $f$ is unbounded in each of these intervals, in other words,
+	\[ \exists c_n \in [a_n, b_n] : f(c_n) > N \forall N \in \NN. \]
+
+	This implies $\lim f(c_n)$ does not exist, but this contradicts
+	the sandwich theorem.
+\end{proof}
+
+\begin{thm}[Weierstrass Extremal Value Theorem]o
+	Let $f:[a,b] \to \RR$ be a continuous function, then
+	\[ \exists c,d \in [a,b] : f(c) \leq f(x) \leq f(d) \forall x \in [a,b] \]
+\end{thm}
+
+\begin{proof}
+	$\{f(x) \mid x \in [a,b] \}$ is bounded, so $m = \inf \{f(x)\}$ exists.
+
+	$m+\eps$ is not a lower bound, hence $\exists y : f(y) < m+\eps$.
+
+	If $\eps = 1/n$, then denote with $y_n$ the corresponding $y$.
+
+	\[
+		m \leq f(y_n) < m + \frac{1}{n}
+		\implies |f(y_n) -m| < \frac{1}{n} \, \forall n \in \NN
+	\]
+	\[ \implies \lim f(y_n) = m \]
+
+	$y_n \in [a,b] \forall n \in \NN$, hence $y_n$ is bounded and
+	has a convergent subsequence.
+
+	\[
+		\lim y_{n_k} = c \implies f(\lim y_{n_k}) = f(c)
+		= \lim f(y_{n_k}) = m
+	\]
+	\[ \implies m = f(c) \implies f(x) \geq f(c) \forall x \in [a,b] \]
+
+	Similarly, $M = \sup \{f(x)\}$, hence $M-\eps$ is not an upper bound and
+	$\exists y \in (a,b) : M \geq f(y) > M-\eps$.
+	\[ \implies |f(y) - M| < \eps \]
+
+	Let $\eps = \frac{1}{n}$ for $y_n$, then $\lim f(y_n) = M$.
+	Therefore there is a subsequence $y_{n_k}$ such that $\lim y_{n_k} = d$.
+
+	\[ \implies f(\lim y_{n_k}) = f(d) = \lim f(y_{n_k}) = M \]
+	\[ \implies f(d) = M \implies f(x) \leq f(d) \forall x \in [a,b] \]
+
+	The extrema are reached at least once, simply because the limits
+	have to exist within the bounded subsets in which their
+	sequences are contained.
+\end{proof}
+
 
 \end{document}
