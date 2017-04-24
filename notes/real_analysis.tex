@@ -705,6 +705,8 @@
 	Any polynomial is a continuous function.
 \end{cor}
 
+\subsection{Intermediate Value Theorem}
+
 \begin{thm}[Sandwich]
 	Let $a_n$ and $b_n$ be sequences such that $\lim a_n = \lim b_n
 	= C$. Then, if $c_n$ is a sequence such that $a_n \leq c_n \leq
@@ -832,5 +834,55 @@
 	sequences are contained.
 \end{proof}
 
+\subsection{Applications of IVT}
+
+\begin{itemize}
+	\item If $f:[a,b] \to \RR$ is continuous, with $f(a) < 0$ and
+		$f(b) > 0$, then $\exists c \in (a,b) : f(c) = 0$
+	\item Let $f:[0,1] \to (0,1)$ be continuous, then
+		$\exists c \in (0,1): f(c) = c$
+\end{itemize}
+
+\begin{proof}
+	Let $g(x) = x - f(x)$, then $g(0) = -f(0) < 0$ and $g(1) = 1 - f(1) > 0$,
+	since $f(x) \in (0,1)$.
+
+	\[ \implies \exists c \in (0,1) : g(c) = 0 \implies f(c) = c \]
+\end{proof}
+
+\subsection{Differentiable Functions}
+
+\begin{defn}[Differentiable]
+	A function $f$ is differentiable at $c$ if the following limit exists:
+	\[ \lim_{h \to 0} \frac{f(c+h) - f(c)}{h} \]
+	$f$ is called differentiable if it is differentiable at any point in it's domain.
+\end{defn}
+
+\begin{lemma}
+	$f$ differentiable at $c$ implies $f$ continuous at $c$.
+\end{lemma}
+
+\begin{proof}
+	Let $f$ be differentialble at $c$.
+	\[
+		\implies f'(c) = \lim_{h \to 0} \frac{f(c+h) - f(c)}{h}
+		= \lim_{x \to c} \frac{f(x) - f(c)}{x-c}
+	\]
+	\begin{align*}
+		\lim_{x \to c} f(x) - f(c)
+		&= \lim_{x \to c}(x-c) \lim_{x \to c} \frac{f(x) - f(c)}{x-c} \\
+		&= 0
+	\end{align*}
+	\[
+		\implies \lim_{x \to c} f(x) = f(c)
+	\]
+	hence $f$ is continuous at $c$.
+\end{proof}
+
+\begin{rem}
+	Not all continuous functions are differentiable, e.g.\ $f(x) = |x|$.
+\end{rem}
+
+\subsection{Product Rule Proof}
 
 \end{document}
