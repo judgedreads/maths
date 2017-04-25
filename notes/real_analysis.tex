@@ -883,6 +883,36 @@
 	Not all continuous functions are differentiable, e.g.\ $f(x) = |x|$.
 \end{rem}
 
-\subsection{Product Rule Proof}
+\begin{lemma}[Product Rule]
+	$(f(x)g(x))' = f(x)g'(x) + f'(x)g(x)$.
+\end{lemma}
+
+\begin{proof}
+	\begin{align*}
+		&\lim_{h \to 0} \frac{f(x+h)g(x+h) - f(x)g(x)}{h} \\
+		&= \lim_{h \to 0} \frac{f(x+h)g(x+h) - f(x+h)g(x) + f(x+h)g(x) - f(x)g(x)}{h} \\
+		&= \lim_{h \to 0} \frac{f(x+h)(g(x+h) - g(x))}{h}
+		+ \lim_{h \to 0} \frac{g(x)(f(x+h) - f(x))}{h} \\
+		&= \lim_{h \to 0} f(x+h) \lim_{h \to 0} \frac{g(x+h) - g(x)}{h}
+		+ g(x) \lim_{h \to 0} \frac{f(x+h) - f(x)}{h} \\
+		&= f(x)g'(x) + g(x)f'(x)
+	\end{align*}
+\end{proof}
+
+\begin{lemma}[Quotient Rule]
+	\[ \left( \frac{f}{g} \right)' = \frac{f'g - g'f}{g^2} \]
+\end{lemma}
+
+\begin{proof}
+	\begin{align*}
+		&\lim_{h \to 0} \left(\frac{f(x+h)}{g(x+h)} - \frac{f(x)}{g(x)}\right)/h \\
+		&= \lim_{h \to 0} \frac{f(x+h)g(x) - f(x)g(x+h)}{hg(x)g(x+h)} \\
+		&= \lim_{h \to 0} \frac{f(x+h)g(x) - f(x)g(x) - f(x)g(x+h) + f(x)g(x)}{hg(x)g(x+h)} \\
+		&= \lim_{h \to 0} \left(
+			g(x)\frac{f(x+h) - f(x)}{h} - f(x)\frac{g(x+h) - g(x)}{h}
+		\right)/g(x)g(x+h)
+	\end{align*}
+\end{proof}
+
 
 \end{document}
