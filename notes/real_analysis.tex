@@ -914,5 +914,79 @@
 	\end{align*}
 \end{proof}
 
+\begin{lemma}
+	$f$ is differentiable at $c$ iff $\exists A \in \RR$ and a continuous funtion $\alpha$ such that
+	\[ f(x) = f(c) + A(x-c) + \alpha(x)(x-c) \]
+	where $\lim_{x \to c} \alpha(x) = 0$.
+	If this is so, then $A = f'(c)$.
+\end{lemma}
+
+\begin{proof}
+	Assume $A$ and $\alpha$ exist.
+	\[ f(c+h) = f(c) + Ah + \alpha(c+h)h \]
+	\[
+		\lim_{h \to 0} \frac{f(c+h) - f(c)}{h}
+		= \lim_{h \to 0} \frac{Ah + h\alpha(c+h)}{h} = A
+	\]
+	\[ \implies f'(c) = A\]
+	(since $\alpha(c) = 0$).
+
+	Assume $f$ differentiable at $c$.
+
+	Let $f'(c) = A = \lim_{h \to 0}\frac{f(c+h) - f(c)}{h}$.
+	Let
+	\[
+		\alpha(x) =
+		\begin{cases}
+			\frac{f(x) - f(c)}{x-c} - A, &x \neq c \\
+			0, &x = c
+		\end{cases}
+	\]
+	\[ f(x) = f(c) + (x-c)A + (x-c)\alpha(x) \]
+	Need to show that $\lim_{x \to c} \alpha(x) = 0$.
+
+	\begin{align*}
+		\lim_{x \to c} \alpha(x) &= \lim_{x \to c}\frac{f(x)-f(c)}{x-c} - f'(c) \\
+		x = c+h &\implies \lim_{h \to 0} \frac{f(c+h)-f(c)}{h} - f'(c) \\
+			&= 0
+	\end{align*}
+\end{proof}
+
+\begin{lemma}[Chain Rule]
+	Let $f:(a,b) \to (c,d) \subset \RR$ and $g:(c,d) \to \RR$, where
+	$f$ is differentiable at $x_0 \in (a,b)$ and $g$ is
+	differentiable at $y_0 = f(x_0)$. Then, $\phi(x) = g(f(x))$ is
+	differentiable at $x_0$, and
+	\[ \phi'(x_0) = g'(f(x_0))f'(x_0). \]
+\end{lemma}
+
+
+\begin{proof}
+	Using the previous lemma, we know that:
+	\[ f(x) = f(x_0) + A(x-x_0) + \alpha(x)(x-x_0) \]
+	where
+	\[ A = f'(x_0), \, \lim_{x \to x_0} \alpha(x) = 0 \]
+
+	Similarly,
+	\[ g(y) = g(y_0) + B(y-y_0) + \beta(y)(y-y_0) \]
+	where
+	\[ B = g'(y_0), \, \lim_{y \to y_0} \beta(y) = 0 \]
+
+	Let $y = f(x)$ and $y_0 = f(x_0)$, then
+	\[ g(f(x)) = g(f(x_0)) + B(f(x)-f(x_0)) + \beta(f(x))(f(x) - f(x_0)) \]
+	\[
+		\implies \phi(x) = \phi(x_0) + B(A(x-x_0) + (x-x_0)\alpha(x))
+		+ \beta(f(x))(A(x-x_0) + (x-x_0)\alpha(x))
+	\]
+	\[ \phi(x_0) + BA(x-x_0) + \gamma(x)(x-x_0) \]
+	where
+	\[ \gamma(x) = B\alpha(x) + A\beta(f(x)) + \alpha(x)\beta(f(x)) \]
+
+	$\lim_{x \to x_0} \gamma(x) = 0$ since $\lim_{x \to x_0} \alpha(x) = \lim_{x \to x_0} \beta(f(x)) = 0$.
+
+	\[ \implies BA = \phi'(x_0) \]
+	\[ \implies \phi'(x_0) = g'(f(x_0))f'(x_0) \]
+\end{proof}
+
 
 \end{document}
