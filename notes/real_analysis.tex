@@ -1014,4 +1014,51 @@
 	\[ \implies f'(x_0) = 0 \]
 \end{proof}
 
+\begin{defn}[Critical Point]
+	A point $x_0 \in (a,b)$ of $f:[a,b] \to \RR$ iff $f'(x_0) = 0$.
+	Note that any local maxiumum or minimum is a critical point.
+\end{defn}
+
+\begin{cor}
+	$\max f(x) = \max \{ f(A), f(B), f(x_1), \ldots, f(x_n) \}$, where
+	$x_1, \ldots, x_n$ are critical points of $f$.
+\end{cor}
+
+\begin{ex}
+	\[ f:[0,2] \to \RR, \quad f(x) = 1 + 5x - x^5 \]
+	\begin{align*}
+		f'(x) = 5 - 5x^4 &= 0 \\
+		x^4 &= 1 \\
+		x &= \pm 1
+	\end{align*}
+
+	$-1 \not \in [0,2]$ so $1$ is the only critical point we care about.
+
+	We now check the values of the bounds and critical points:
+	\[ f(1) = 1 \]
+	\[ f(0) = 1 \]
+	\[ f(2) = -21 \]
+	hence, $\max f(x) = 1$ (on $[0,2]$).
+\end{ex}
+
+\begin{thm}[Rolle's Theorem]
+	Let $f:[a,b] \to \RR$ be a continuous funtion, which is
+	differentiable on $(a,b)$. If $f(a) = f(b)$, then there is $c
+	\in (a,b)$ such that $f'(c) = 0$.
+\end{thm}
+
+\begin{proof}
+	We know there are points $x_0$ and $x_1$ in $[a,b]$ such that
+	$f(x_0) \leq f(x) \leq f(x_1) \forall x \in [a,b]$. (By taking
+	the max and min of the endpoints and critical points).
+
+	If $x_1$ and $x_0$ are the endpoints of the interval $[a,b]$,
+	then the function must be constant, so $f'(x) = 0 \forall x \in
+	[a,b]$.
+
+	Assume that $x_1$ is within $(a,b)$, then $x_1$ is a local
+	maximum and, by Fermat's Theorem, is a critical point. Hence
+	$f'(x_1) = 0$.
+\end{proof}
+
 \end{document}
