@@ -1061,4 +1061,26 @@
 	$f'(x_1) = 0$.
 \end{proof}
 
+\begin{thm}[Mean Value Theorem (Lagrange)]
+	Let $f:[a,b] \to \RR$ be a continuous function, which is
+	differentiable on $(a,b)$, then:
+	\[ \exists c \in (a,b) : f(b) - f(a) = f'(c)(b-a) \]
+\end{thm}
+
+\begin{proof}
+	Consider a function
+	\[ g(x) = f(x) - \frac{f(b) - f(a)}{b-a}x \]
+	\begin{align*}
+		g(b) - g(a) &= f(b) - \frac{f(b) - f(a)}{b-a}b
+		- f(a) + \frac{f(b) - f(a)}{b-a}a \\
+		&= \left( f(b) - f(a) \right)
+		\left(1 - \frac{b}{b-a} + \frac{a}{b-a} \right) \\
+		&= 0
+	\end{align*}
+
+	By Rolle's theorem, there is $c \in (a,b)$ such that $g'(c) = 0$.
+
+	\[ \implies f'(c) = \frac{f(b) - f(a)}{b-a} \]
+\end{proof}
+
 \end{document}
