@@ -1,0 +1,77 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage{mystyle}
+
+\begin{document}
+
+\title{Approximating Derivatives}
+\author{Pearce Dedmon}
+\date{}
+\maketitle
+
+\begin{prop}[]
+	Approximate $f^{(k)}(x)$ using functions $f(x+a_ih) a_i \in \RR, \\i=1,...,n$.
+\end{prop}
+
+\begin{soln}
+	Let $g(x,h) = \sum_{i=1}^n c_if(x+a_ih)$ and expand using Taylor's Theorem:
+
+	\[ g(x,h) = \sum_{i=1}^n c_i \left( f(x) + a_ihf'(x) + ... + \frac{(a_ih)^k}{k!}f^{(k)}(x) + ... \right) \]
+	Given that $g(x,h) = f^{(k)} + O(h^p)$ we have:
+	\[ \sum c_i = 0, \sum c_ia_i = 0, ..., \sum c_ia_i^k = \frac{k!}{h^k}, ..., \sum c_ia_i^{n-1} = 0 \]
+	which can be expressed as the linear system:
+	\[
+		\begin{pmatrix}
+			1 & 1 & \cdots & 1 \\
+			a_1 & a_2 & \cdots & a_n \\
+			a_1^2 & a_2^2 & \cdots & a_n^2 \\
+			\vdots & \vdots & \ddots & \vdots \\
+			a_1^{n-1} & a_2^{n-1} & \cdots & a_n^{n-1}
+		\end{pmatrix}
+		\begin{pmatrix}
+			c_1 \\
+			c_2 \\
+			\vdots \\
+			c_n
+		\end{pmatrix}
+		=
+		\begin{pmatrix}
+			0 \\
+			0 \\
+			\vdots \\
+			k! / h^k
+			0 \\
+			\vdots \\
+			0
+		\end{pmatrix}
+	\]
+\end{soln}
+
+\begin{ex}[Central Difference Formula]
+	$n=3, k=1, a_1=-1, a_2=0, a_3=1$
+	\[
+		\begin{pmatrix}
+			1 & 1 & 1 \\
+			-1 & 0 & 1 \\
+			1 & 0 & 1 \\
+		\end{pmatrix}
+		\begin{pmatrix}
+			c_1 \\
+			c_2 \\
+			c_3 \\
+		\end{pmatrix}
+		=
+		\begin{pmatrix}
+			0 \\
+			1/h \\
+			0 \\
+		\end{pmatrix}
+	\]
+	\[ c_1 = -1/2h, c_2 = 0, c_3 = 1/2h \]
+	\[ f'(x) = \frac{f(x+h) - f(x-h)}{2h} + O(h^3) \]
+
+	Note that we would expect to have an error of $O(h^2)$ since
+	$n-k=2$, however the expression is symmetric so one level of
+	error is cancelled.
+\end{ex}
+
+\end{document}
