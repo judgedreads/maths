@@ -1115,4 +1115,90 @@
 	So $f(x)$ is increasing in $(2,4)$ and decreasing in $\RR \setminus [2,4]$.
 \end{ex}
 
+\begin{thm}[Cauchy MVT Generalisation]
+	Assume $f,g:[a,b] \to \RR$ are continous and differentiable in $(a,b)$, then
+	\[ \exists c \in (a,b) : (g(b) - g(a))f'(c) = (f(b) - f(a))g'(c) \]
+\end{thm}
+
+\begin{proof}
+	If $g(b) = g(a)$ then by Rolle's Theorem, $\exists c \in (a,b) : g'(c) = 0$, and we are done.
+
+	Assume $g(a) \neq g(b)$.
+
+	Let $h(x) = (g(b) - g(a))f(x) - (f(b) - f(a))g(x)$.
+
+	\begin{align*}
+		h(b) - h(a) &= f(b)g(b) - f(b)g(a) - f(b)g(b) + f(a)g(b) \\
+		&- f(a)g(b) + f(a)g(a) + f(b)g(a) - f(a)g(a) \\
+		&= 0
+	\end{align*}
+
+	\[ \implies \exists c \in (a,b) : h'(c) = 0 \]
+
+	\[ h'(x) = (g(b) - g(a))f'(x) - (f(b) - f(a))g'(x) \]
+	\[ h'(c) = 0 \implies (g(b) - g(a))f'(c) = (f(b) - f(a))g'(c) \]
+\end{proof}
+
+\begin{rem}
+	Setting $g$ to the identity map yields the standard MVT\@.
+\end{rem}
+
+\begin{lem}[L'hopital Rule]
+	Assume $f$ and $g$ are differentiable in $(a,b)$ and $c \in (a,b) : f(c) = g(c) = 0$.
+	Moreover, let $g(x), g'(x) \neq 0 \forall x \neq c$. Then
+	\[ \lim_{x \to c} \frac{f(x)}{g(x)} = \lim_{x \to c} \frac{f'(x)}{g'(x)} \]
+\end{lem}
+
+\begin{proof}
+	Let $x_n \in (c,b) : \lim_{n \to \infty} x_n = c$.
+
+	By Cauchy MVT, $\exists y_n \in (c, x_n)$ such that
+	\[ (g(x_n) - g(c))f'(y_n) = (f(x_n) - f(c))g'(y_n) \]
+
+	By assumption, $f(c) = g(c) = 0$, so
+	\[
+		g(x_n)f'(y_n) = f(x_n)g'(y_n)
+		\implies
+		\frac{f'(y_n)}{g'(y_n)} = \frac{f(x_n)}{g(x_n)}
+	\]
+
+	\[ x_n \to c \implie y_n \to c \]
+
+	\[
+		\implies
+		\lim_{n \to \infty}\frac{f(x_n)}{g(x_n)}
+		= \lim_{n \to \infty}\frac{f'(y_n)}{g'(y_n)}
+		= \lim_{x \to c^+}\frac{f'(x)}{g'(x)}
+	\]
+
+	We can use a similar method for $x_n \in (a,c)$, hence
+	\[
+		\lim_{x \to c^-}\frac{f(x)}{g(x)}
+		= \lim_{x \to c^+}\frac{f(x)}{g(x)}
+		= \lim_{x \to c}\frac{f'(x)}{g'(x)}
+	\]
+\end{proof}
+
+\begin{ex}
+	\[ \lim_{x \to 0} \frac{x - \sin x}{x^3} \]
+
+	$x \to 0 \implies f(x), g(x) \to 0$, so we can apply l'hopital.
+
+	\[
+		\lim_{x \to 0} \frac{x - \sin x}{x^3}
+		= \lim_{x \to 0} \frac{1 - \cos x}{3x^2}
+	\]
+
+	$x \to 0 \implies f(x), g(x) \to 0$, so we can apply l'hopital again.
+
+	\[
+		\lim_{x \to 0} \frac{1 - \cos x}{3x^2}
+		= \lim_{x \to 0} \frac{\sin x}{6x}
+		= \lim_{x \to 0} \frac{\cos x}{6}
+		= \frac{1}{6}
+	\]
+
+\end{ex}
+
+
 \end{document}
