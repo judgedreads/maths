@@ -1200,5 +1200,49 @@
 
 \end{ex}
 
+\section{Riemann Integration}
+
+Denote by $B_{[a,b]}$ the set of all bounded functions on $[a,b]$, and
+by $C_{[a,b]}$ the set of all continuous functions on $[a,b]$. Note that
+$C_{[a,b]} \subset B_{[a,b]}$.
+
+\begin{defn}[Partition]
+	A partition of the interval $[a,b]$ is a (strictly increasing)
+	sequence of numbers, $P := \{x_0, \ldots, x_n\}$, where $x_0 = a$
+	and $x_n = b$.
+\end{defn}
+
+\begin{defn}[Partition width]
+	The width of a partition $P$ is given
+	\[ ||P|| = \max\{x_{i+1} - x_i\}.\]
+\end{defn}
+
+\begin{defn}[Refinement]
+	If $P$ and $P'$ are partitions of $[a,b]$, then if $P \subset
+	P'$, we say that $P'$ is a refinement of $P$.
+\end{defn}
+
+\begin{rem}
+	If $P'$ is a refinement of a partition $P$, then $||P'|| \leq ||P||$.
+\end{rem}
+
+\begin{defn}[Riemann Sums]
+	Let $f:[a,b] \to \RR$ be a bounded function and $P$ a partition of $[a,b]$.
+
+	The lower Riemann sum of $f$ with respect to $P$ is
+	\[ L(f,P) = \sum_{i=0}^{n-1} m_i (x_{i+1} - x_i) \]
+	where $m_i = \inf_{x_i \leq x \leq x_{i+1}} \{f(x)\}$.
+
+	The upper Riemann sum of $f$ with respect to $P$ is
+	\[ U(f,P) = \sum_{i=0}^{n-1} M_i (x_{i+1} - x_i) \]
+	where $M_i = \sup_{x_i \leq x \leq x_{i+1}} \{f(x)\}$.
+
+	$m_i$ and $M_i$ are well defined as a result of the boundedness of $f$.
+\end{defn}
+
+\begin{rem}
+	\[ L(f,P) \leq U(f,P) \]
+\end{rem}
+
 
 \end{document}
