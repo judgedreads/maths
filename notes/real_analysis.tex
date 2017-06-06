@@ -1244,5 +1244,34 @@ $C_{[a,b]} \subset B_{[a,b]}$.
 	\[ L(f,P) \leq U(f,P) \]
 \end{rem}
 
+\begin{lemma}
+	Assume $P'$ is a refinement of a partition $P$, then for a bounded function $f$
+	\[ L(f,P) \leq L(f,P'), \quad U(f,P') \leq U(f,P). \]
+\end{lemma}
+
+\begin{proof}
+	Consider $P = \{x_0, \ldots, x_n\}$ and $P' = \{x_0, x', x_1, \ldots, x_n\}$.
+
+	\[ L(f,P) = m_0(x_1 - x_0) + \cdots + m_{n-1}(x_n - x_{n-1}) \]
+	\[ L(f,P') = m_0'(x' - x_0) + m_0''(x_1 - x') + \cdots + m_{n-1}(x_n - x_{n-1}) \]
+
+	It is clear that $m_0' \geq m_0$ and $m_0'' \geq m_0$, since $m_0 \in f([x_0, x'])$
+	or $m_0 \in f([x', x_1])$ or bothe (if $m_0 = f(x')$).
+
+	\begin{align*}
+		L(f,P) - L(f,P') &= m_0(x_1 - x_0) - m_0(x' - x_0) - m_0''(x_1 - x') \\
+				 &\leq m_0(x_1 - x_0 - x' + x_0 - x_1 + x') \\
+		   		 &= 0
+	\end{align*}
+	\[ \implies L(f,P) \leq L(f,P') \]
+
+	Similarly, $M_0'' \leq M_0$ and $M_0' \leq M_0$.
+	\begin{align*}
+		U(f,P) - U(f,P') &= M_0(x_1 - x_0) - M_0'(x' - x_0) + M_0''(x_1 - x') \\
+				 &\geq 0
+	\end{align*}
+	\[ \implies U(f,P) \geq U(f,P') \]
+\end{proof}
+
 
 \end{document}
