@@ -1273,5 +1273,83 @@ $C_{[a,b]} \subset B_{[a,b]}$.
 	\[ \implies U(f,P) \geq U(f,P') \]
 \end{proof}
 
+\begin{lemma}
+	If $P$ and $Q$ are partitions of $[a,b]$, then
+	\[ L(f, P) \leq U(f, Q) \]
+\end{lemma}
+
+\begin{proof}
+	Let $R = P \cup Q$ It is clear that $R$ is a partition of
+	$[a,b]$ and a refinement of both $P$ and $Q$.
+
+	We know that $L(f,R) \leq U(f,R)$ and from the previous lemma:
+	\[ L(f,P) \leq L(f,R) \quad U(f,R) \leq U(f,Q) \]
+
+	\[ \implies L(f,P) \leq U(f,Q) \]
+\end{proof}
+
+\begin{defn}[Lower Integral]
+	The lower integral of the function $f:[a,b] \to \RR$ is
+	\[ (L) \int_a^b f(x) dx = \sup \{L(f,P)\} \]
+	where $P$ is any partition of $[a,b]$.
+\end{defn}
+
+\begin{defn}[Upper Integral]
+	The upper integral of the function $f:[a,b] \to \RR$ is
+	\[ (U) \int_a^b f(x) dx = \inf \{U(f,P)\} \]
+	where $P$ is any partition of $[a,b]$.
+\end{defn}
+
+\begin{defn}[Upper Integral]
+	A function $f:[a,b] \to \RR$ is called Riemann Integrable if
+	\[ (L) \int_a^b f(x) dx = (U) \int_a^b f(x) dx \]
+
+	This common value is called the Riemann Integral of $f$ and is simply denoted
+	\[ \int_a^b f(x) dx \]
+\end{defn}
+
+\begin{rem}
+	\begin{itemize}
+		\item The set of all Riemann Integrable funciton is denoted $R_{[a,b]}$
+		\item $R_{[a,b]} \subset B_{[a,b]}$
+	\end{itemize}
+\end{rem}
+
+\begin{defn}[Uniform Continuity]
+	$f$ is uniformly continuous if
+	\[ \forall \eps > 0 \exists \delta > 0 : |x-y| < \delta \implies |f(x) - f(y)| < \eps \]
+\end{defn}
+
+\begin{rem}
+	The difference between regular and uniform continuity is that
+	uniform continuity depends only on $\eps$, whereas regular
+	continuity depends on a point in the domain of $f$.
+\end{rem}
+
+\begin{thm}
+	If $f:[a,b] \to \RR$ is continuous, then $f$ is uniformly continuous.
+\end{thm}
+
+\begin{proof}
+	Assume $f$ is not uniformly continuous, then:
+	\[ \exists \eps > 0 \forall \delta > 0 : \exists x, y : |x-y| < delta \implies |f(x)-f(y)| \geq \eps \]
+
+	Fix $\eps$ and take $\delta = \frac{1}{n}$
+	\[ \exists x_n, y_n \in [a,b] : |x_n - y_n| < \frac{1}{n} \implies |f(x_n)-f(y_n)| \geq \eps \]
+
+	We have two bounded sequences which, by the Bolzano-Wieirstrass theorem, have convergent subsequences.
+	\[ x_n, \ldots, x_{m_l} \to c \in [a,b] \]
+	\[ y_n, \ldots, y_{m_l} \to d \in [a,b] \]
+
+	\[ |x_{m_l} - y_{m_l}| < \frac{1}{n} \implies c = d \]
+	\[ f(x_{m_l})- f(y_{m_l}) \geq \eps \]
+
+	\[ \implies \lim_{l \to \infty} |f(x_{m_l}) - f(y_{m_l})| \geq \eps \]
+	\[ \implies | \lim f(x_{m_l}) - \lim f(y_{m_l}) | \geq \eps \]
+	\[ \implies | f(\lim x_{m_l}) - f(\lim f_{m_l}) | \geq \eps \]
+	\[ \implies |f(c) - f(d)| \geq \eps \]
+
+	This is a contradiction because $c=d$ and $\eps > 0$.
+\end{proof}
 
 \end{document}
