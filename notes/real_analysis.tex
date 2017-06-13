@@ -1143,11 +1143,11 @@
 	Setting $g$ to the identity map yields the standard MVT\@.
 \end{rem}
 
-\begin{lem}[L'hopital Rule]
+\begin{lemma}[L'hopital Rule]
 	Assume $f$ and $g$ are differentiable in $(a,b)$ and $c \in (a,b) : f(c) = g(c) = 0$.
 	Moreover, let $g(x), g'(x) \neq 0 \forall x \neq c$. Then
 	\[ \lim_{x \to c} \frac{f(x)}{g(x)} = \lim_{x \to c} \frac{f'(x)}{g'(x)} \]
-\end{lem}
+\end{lemma}
 
 \begin{proof}
 	Let $x_n \in (c,b) : \lim_{n \to \infty} x_n = c$.
@@ -1162,7 +1162,7 @@
 		\frac{f'(y_n)}{g'(y_n)} = \frac{f(x_n)}{g(x_n)}
 	\]
 
-	\[ x_n \to c \implie y_n \to c \]
+	\[ x_n \to c \implies y_n \to c \]
 
 	\[
 		\implies
@@ -1350,6 +1350,94 @@ $C_{[a,b]} \subset B_{[a,b]}$.
 	\[ \implies |f(c) - f(d)| \geq \eps \]
 
 	This is a contradiction because $c=d$ and $\eps > 0$.
+\end{proof}
+
+\begin{thm}
+	A function $f:[a,b] \to \RR$ is integrable iff
+	\[ \forall \eps > 0 \exists \delta : ||P|| < \delta \implies U(f,P) - L(f,P) < \eps \]
+\end{thm}
+
+\begin{proof}
+	$f$ integrable
+	\begin{align*}
+		&\implies \inf \{ U(f,P) \} = \sup \{ L(f,P) \} \\
+		&\implies \lim_{||P|| \to 0} U(f,P) = \lim_{||P|| \to 0} L(f,P) \\
+		&\implies (\forall \eps > 0 \exists \delta : ||P|| < \delta \implies U(f,P) - L(f,P) < \eps)
+	\end{align*}
+	This follows from the result that $L(f,P) \leq L(f,P')$ and $U(f,P) \geq U(f,P')$.
+\end{proof}
+
+\begin{thm}
+	Any continuous function $f:[a,b] \to \RR$ is integrable.
+\end{thm}
+
+\begin{proof}
+	Continuity implies uniform continuity, hence
+	\[
+		\forall \eps > 0 \exists \delta : |x-y| < \delta
+		\implies |f(x)-f(y)| < \frac{\eps}{2(b-a)}
+	\]
+
+	Let $P$ be a partition of $[a,b]$ such that $||P|| < \delta$.
+
+	\begin{align*}
+		U(f,P) - L(f,P)
+		&= \sum_{i=0}^{n-1} M_i (x_{i+1} - x_i) - \sum_{i=0}^{n-1} m_i (x_{i+1} - x_i) \\
+		&= \sum_{i=0}^{n-1} (M_i - m_i)(x_{i+1} - x_i) \\
+		&\leq \sum_{i=0}^{n-1} \frac{\eps}{2(b-a)} (x_{i+1} - x_i)
+	\end{align*}
+
+	since
+	\[
+		||P|| < \delta \implies x_{i+1} - x_i < \delta
+		\implies M_i - m_i < \frac{\eps}{2(b-a)}
+	\]
+
+	\begin{align*}
+		\sum_{i=0}^{n-1} x_{i+1} - x_i
+		&= (x_1 - x_0 + x_2 - x_1 + \cdots + x_n - x_{n-1}) \\
+		&= x_n - x_0 \\
+		&= b - a
+	\end{align*}
+
+	\[
+		\implies U(f,P) - L(f,P) \leq \frac{\eps(b-a)}{2(b-a)}
+		= \frac{\eps}{2} < \eps
+	\]
+
+	It follows from the previous theorem that $f$ must be integrable.
+
+\end{proof}
+
+\begin{defn}[Primtive]
+	A primitive of a function $f:[a,b] \to \RR$ is a function $F:[a,b] \to \RR$, where
+	\[ F'(x) = f(x). \]
+\end{defn}
+
+\begin{rem}
+	If $F(x)$ is a primative of $f(x)$, then $F(x) + c$ is also a primitive of $f(x)$.
+	Furthermore, if $F_1$ and $F_2$ are primitives of $f$, then $F_1 = F_2 + c$.
+\end{rem}
+
+\begin{thm}[Fundamental Theorem of Calculus]
+	If $F$ is a primitve of $f:[a,b] \to \RR$, then
+	\[ \int_a^b f(x) dx = F(b) - F(a) \]
+\end{thm}
+
+\begin{proof}
+	Let $P$ be a partition of $[a,b]$.
+
+	Using MVT, we have:
+	\[ F(x_{i+1}) - F(x_i) = F'(y_i)(x_{i+1} - x_i) \]
+	for some $y_i \in [x_i, x_{i+1}]$.
+
+	\[ m_i \leq f(y_i) = F'(y_i) \leq M_i \]
+	\begin{align*}
+		&\implies L(f,P) \leq \sum_{i=0}^{n-1} f(y_i)(x_{i+1}-x_i) \leq U(f,P) \\
+		&\implies L(f,P) \leq \sum_{i=0}^{n-1} F(x_{i+1}) - F(x_i) \leq U(f,P) \\
+		&\implies L(f,P) \leq F(b) - F(a) \leq U(f,P) \\
+		&\implies \int_a^b f(x) dx = F(b) - F(a)
+	\end{align*}
 \end{proof}
 
 \end{document}
