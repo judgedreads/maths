@@ -1440,4 +1440,95 @@ $C_{[a,b]} \subset B_{[a,b]}$.
 	\end{align*}
 \end{proof}
 
+\subsection{Properties of Integrals}
+
+Let $f,g : [a,b] \to \RR$ be integrable, then
+\begin{enumerate}
+	\item
+		$\alpha f + \beta g$ is integrable and
+		\[ \int_a^b \alpha f + \beta g = \alpha \int_a^b f + \beta \int_a^b g \]
+	\item
+		\[ \int_a^b f = \int_a^c f + \int_c^b f, \quad \forall c \in [a,b] \]
+	\item
+		if $|f(x)| \leq M$,
+		\[ \left| \int_a^b f \right| \leq M |b-a| \]
+\end{enumerate}
+
+\begin{proof}
+	\begin{enumerate}
+		\item
+			Let $h = \alpha f + \beta g$, and let $F,G$ be primitives of $f,g$.
+			Let $H = \alpha F + \beta G + c$, then $H' = \alpha f + \beta g$.
+
+			\begin{align*}
+				\int_a^b h &= H(b) - H(a) \\
+					   &= \alpha F(b) - \alpha F(a)
+						+ \beta G(b) - \beta G(a) \\
+					   &= \alpha \int_a^b f + \beta \int_a^b g
+			\end{align*}
+		\item
+			\begin{align*}
+				\int_a^c f + \int_c^b f &= F(c) - F(a) + F(b) - F(c) \\
+							&= F(b) - F(a) \\
+				   			&= \int_a^b f
+			\end{align*}
+		\item
+			Let $P = \{a,b\}$ be a partition of $[a,b]$, then
+			\begin{align*}
+				|f(x)| \leq M &\implies \sup\{f(x)\} = M_i = M \\
+					      &\implies U(f,P) = M(b-a)
+			\end{align*}
+			Let  $P' = \{a,c,b\}$ be a refinement of $P$, then
+			\[ U(f,P') \leq U(f,P) \leq M(b-a) \]
+			\[ \int_a^b f \leq \inf\{U(f,P)\} \implies \int_a^b f \leq M(b-a) \]
+	\end{enumerate}
+\end{proof}
+
+\begin{thm}
+	Let $f:[a,b] \to \RR$ be an integrable function. Consider the function
+	\[ F(x) = \int_a^x f(t) dt \]
+	then $F:[a,b] \to \RR$ is continuous. Futhermore, if $f$ is
+	continuous at $c \in (a,b)$, then $F$ is differentiable at $c$
+	and $F'(c) = f(c)$.
+\end{thm}
+
+\begin{proof}
+	Take $c \in (a,b)$. We need to show that
+	\[ \lim_{x \to c} F(x) = F(c) \]
+	or
+	\[ \lim_{h \to o} F(c+h) = F(c). \]
+
+	\begin{align*}
+		|F(c+h) - F(c)| &= \left| \int_a^{c+h} f(t) - \int_a^c f(t) \right| \\
+				&= \left| \int_a^c f(t) + \int_c^{c+h} f(t) - \int_a^c f(t) \right| \\
+			 	&= \left| \int_c^{c+h} f(t) \right|
+	\end{align*}
+
+	$f$ is bounded, so
+	\[ \exists M : |f(x)| \leq M \]
+	\[ \implies | F(c+h) - F(c) | \leq M(c+h-c) = Mh \]
+
+	\[ \lim_{h \to 0} Mh = 0 \implies \lim_{h \to 0} F(c+h) = F(c) \]
+	hence $F$ is continuous at $c \in [a,b]$.
+
+	We now aim to prove that $F'(c) = f(c)$, or
+	\[ \lim_{h \to 0} \frac{F(c+h) - F(c)}{h} = f(c) \]
+
+	\begin{align*}
+		\left|\frac{1}{h} \int_a^{c+h} f(t) - \frac{1}{h} \int_a^c f(t) - f(c) \right| \\
+		&= \left| \frac{1}{h} \int_c^{c+h} f(t) - f(c) \right| \\
+		&= \left| \frac{1}{h} \int_c^{c+h} f(t) - \frac{h}{h} f(c) \right| \\
+		&= \left| \frac{1}{h} \int_c^{c+h} f(t) - \frac{1}{h} \int_c^{c+h} f(c) \right| \\
+		&= \left| \frac{1}{h} \int_c^{c+h} (f(t) - f(c)) \right|
+	\end{align*}
+
+	By assumption, $f$ is continuous, hence
+	\begin{align*}
+		&\implies \forall \eps > 0 \exists \delta > 0 : |t-c| \implies |f(t)-f(c)| < \eps \\
+		&\implies \frac{1}{h} \int_c^{c+h} f(t) - f(c) \leq \frac{\eps(c+h-c)}{h} = \eps \\
+		&\implies \lim_{h \to 0} \frac{F(c+h) - F(c)}{h} = f(c) \\
+		&\implies F'(c) = f(c)
+	\end{align*}
+\end{proof}
+
 \end{document}
